@@ -1,0 +1,45 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/topicList/topicList",
+    "pages/topic/topic",
+    "pages/my/my",
+    "pages/star/star",
+    "pages/settings/settings",
+    "pages/newTopic/newTopic",
+    "pages/newCommunity/newCommunity"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#1F8A70",
+    "navigationBarTitleText": "邻答",
+    "navigationBarTextStyle":"white"
+  },
+  "tabBar": {
+    "list": [{
+      "pagePath": "pages/index/index",
+      "text": "首页",
+      "iconPath" : "images/home-grey.png",
+      "selectedIconPath" : "images/home.png"
+    }, {
+      "pagePath": "pages/my/my",
+      "text": "我的",
+      "iconPath" : "images/user-grey.png",
+      "selectedIconPath" : "images/user.png"
+    }, {
+      "pagePath": "pages/star/star",
+      "text": "收藏",
+      "iconPath" : "images/star-grey.png",
+      "selectedIconPath" : "images/star.png"
+    }, {
+      "pagePath": "pages/settings/settings",
+      "text": "设置",
+      "iconPath" : "images/setting-grey.png",
+      "selectedIconPath" : "images/setting.png"
+    }],
+    "backgroundColor" : "white",
+    "borderStyle" : "white",
+    "selectedColor" : "#1F8A70",
+    "position" : "bottom"
+  }
+}

@@ -1,0 +1,162 @@
+/**app.wxss**/
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-between;
+  box-sizing: border-box;
+} 
+
+.header{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  padding: 10px;
+  color: grey;
+  font-size: 11pt;
+  border-bottom: 1px solid lightgray;
+}
+
+.content{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: space-around;
+  justify-content: center;
+  padding: 5px;
+}
+
+.community{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+  flex-grow: 2;
+  border-bottom: 1px solid lightgrey;
+}
+
+.chead{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  flex-grow: 1;
+  flex-shrink: 0;
+}
+
+.footer{
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+}
+
+.addIcon{
+  width : 64px;
+  height: 64px;
+  opacity:0.9;
+  filter:alpha(opacity=90);
+}
+
+.userAvatar{
+  width: 24px; 
+  height: 24px;
+  border-radius: 12px;
+}
+
+.uName{
+    font-weight: bold;
+    font-size: 12pt;
+    padding-left:5px; 
+    flex-grow: 3;
+}
+
+.cDate{
+    font-size: 12pt;
+    color: lightgray;
+    padding-left:10px; 
+}
+
+.ccontent{
+  padding: 5px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11pt;
+}
+
+.cfooter{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tab{
+    font-weight: bold;
+}
+
+.lowlight{
+    color: lightgrey;
+}
+
+.avatar{
+  width: 32px; 
+  height: 32px;
+  border-radius: 16px;
+}
+
+.cname{
+  font-size: 10pt;
+  font-weight:  bold;
+  flex-grow: 3;
+  margin-left: 5px;
+  flex-shrink: 1;
+}
+
+.icon{
+  width: 24px; 
+  height: 24px;
+  flex-shrink: 0;
+}
+
+
+.small{
+  width:16px;
+  height:16px;
+}
+
+.section{
+  margin-top : 10px;
+  font-size: 11pt;
+}
+
+.mapIcon{
+   width: 32px;
+   height: 32px;
+   flex-shrink: 0; 
+}
+
+.currentLocation{
+  flex-grow: 3;
+  flex-shrink: 1;
+  margin-left: 5px;
+}
+
+.row{
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11pt;
+  border-bottom: 1px solid lightgrey;
+}

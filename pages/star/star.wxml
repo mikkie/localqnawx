@@ -1,0 +1,16 @@
+<!--star.wxml-->
+<view class="container">
+  <view class="header">
+    <text class="tab">关注社区</text>
+    <text class="tab lowlight">关注话题</text>
+  </view>
+  <view class="content">
+    <view class="community">
+       <view class="chead">
+         <image class="avatar" mode="aspectFit" src="http://www.yamixed.com/static/images/no_image.jpg"></image>
+         <navigator class="cname" url="../topicList/topicList" hover-class="none"><text>厦门市前埔南区</text></navigator>
+         <image class="icon" src="../../images/star-yellow.png"></image>
+       </view>
+     </view>
+  </view>  
+</view>

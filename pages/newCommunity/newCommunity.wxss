@@ -1,0 +1,7 @@
+.communityName{
+   flex-grow: 2; 
+}
+
+.okBtn{
+    margin: 5px;
+}

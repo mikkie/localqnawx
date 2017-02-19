@@ -1,0 +1,14 @@
+/**index.wxss**/
+.searchInput{
+  flex-grow: 3;
+  flex-shrink: 1;
+}
+
+.newCommunity{
+  margin:5px;
+}
+
+
+
+
+

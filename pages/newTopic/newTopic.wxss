@@ -1,0 +1,4 @@
+.periodText{
+    color: darkgrey;
+    font-weight: bold;
+}

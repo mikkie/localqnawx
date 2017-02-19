@@ -1,0 +1,48 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="header">
+    <image class="icon" src="../../images/magnifier.png"></image>
+    <input type="text" placeholder="输入社区名称进行搜索" class="currentLocation" value="{{currentLoc}}"/>
+    <image class="icon" src="../../images/map.png" bindtap="openMap"></image>
+  </view>
+  <view class="content">
+     <view class="community">
+       <view class="chead">
+         <image class="avatar" mode="aspectFit" src="http://www.yamixed.com/static/images/no_image.jpg"></image>
+         <navigator class="cname" url="../topicList/topicList?curLocl=厦门市前埔南区" hover-class="none"><text>前埔南区</text></navigator>
+         <image class="icon" src="../../images/star-grey.png"></image>
+       </view>
+     </view>
+     <view class="community">
+       <view class="chead">
+         <image class="avatar" mode="aspectFit" src="http://www.yamixed.com/static/images/no_image.jpg"></image>
+         <navigator class="cname" url="../topicList/topicList?curLocl=厦门市软件园2期" hover-class="none"><text>软件园2期</text></navigator>
+         <image class="icon" src="../../images/star-grey.png"></image>
+       </view>
+     </view>
+     <view class="community">
+       <view class="chead">
+         <image class="avatar" mode="aspectFit" src="http://www.yamixed.com/static/images/no_image.jpg"></image>
+         <text class="cname">软件园1期</text>
+         <image class="icon" src="../../images/star-grey.png"></image>
+       </view>
+     </view>
+     <view class="community">
+       <view class="chead">
+         <image class="avatar" mode="aspectFit" src="http://www.yamixed.com/static/images/no_image.jpg"></image>
+         <text class="cname">瑞景商业广场</text>
+         <image class="icon" src="../../images/star-grey.png"></image>
+       </view>
+     </view>
+     <view class="community">
+       <view class="chead">
+         <image class="avatar" mode="aspectFit" src="http://www.yamixed.com/static/images/no_image.jpg"></image>
+         <text class="cname">湖里万达</text>
+         <image class="icon" src="../../images/star-grey.png"></image>
+       </view>
+     </view>
+     <view class="newCommunity">
+       <navigator url="../newCommunity/newCommunity" hover-class="none"><button type="primary">新建社区</button></navigator>
+     </view>
+  </view>
+</view>

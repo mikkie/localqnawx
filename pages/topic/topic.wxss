@@ -1,0 +1,35 @@
+.starBtn{
+  margin-left: 5px;
+}
+
+.header{
+    background-color: #FFE11A;
+}
+
+.footer{
+    border-top: 1px solid lightgray;
+    background-color: #BEDB39;
+    padding: 5px;
+    bottom: 0;
+    left : 0;
+    right : 0;
+}
+
+.fcontainer{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  flex-grow: 1;
+  flex-shrink: 1;
+  font-size: 11pt; 
+}
+
+.qInput{
+  flex-grow: 3; 
+}
+
+.okBtn{
+  flex-shrink: 0;
+}
