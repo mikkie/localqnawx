@@ -1,3 +1,4 @@
+var utils = require('../../utils/util.js')
 Page({
   data: {
     currentLoc : '选择位置',
@@ -12,8 +13,11 @@ Page({
       });
   },
   submitNewCommunity : function(){
-      if(this.data.currentLoc == '选择位置'){
+      if(this.data.currentLoc == '选择位置' || utils.stringUtil.isEmptyOrNull(this.data.communityName)){
          return false;
+      }
+      else{
+          console.log('success');
       }
   }
 });
