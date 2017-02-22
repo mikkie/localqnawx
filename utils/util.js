@@ -50,8 +50,20 @@ var serviceUtil = {
   }
 };
 
+
+var arrayUtil = {
+  mergeArray : function(originArray,array){
+     if(array && array.length > 0){
+        for(var i in array){
+           originArray.push(array[i]);
+        }
+     }
+  }
+};
+
 module.exports = {
   formatTime: formatTime,
   stringUtil : stringUtil,
-  serviceUtil : serviceUtil
+  serviceUtil : serviceUtil,
+  arrayUtil : arrayUtil
 }

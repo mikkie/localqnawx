@@ -5,7 +5,8 @@ conf = require('../../utils/conf');
 var app = getApp()
 Page({
   data: {
-    currentLoc : ''
+    currentLoc : '',
+    communities : []
   },
   openMap : function(event){
       var that = this;   
@@ -16,6 +17,7 @@ Page({
       });
   },
   onLoad: function () {
+      var that = this;
       wx.getLocation({
         type : 'wgs84',
         success : function(res){
@@ -24,7 +26,10 @@ Page({
            util.serviceUtil.post(conf.service.loadHomePageCommunities,{
               location : [lng,lat]
            },function(res){
-              console.log(res);
+              var array = [];
+              util.arrayUtil.mergeArray(array,res.data.success.near);
+              util.arrayUtil.mergeArray(array,res.data.success.recommend);
+              that.setData({communities : array});
            },function(err){
                console.log(err);
            });
