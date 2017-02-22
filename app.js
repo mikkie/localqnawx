@@ -1,23 +1,34 @@
+var util = require('./utils/util');
+var conf = require('./utils/conf');
 //app.js
 App({
   onLaunch: function () {
-    //调用API从本地缓存中获取数据
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
+    var that = this;
+    this.getUserInfo(function(res,code){
+      that.decryptData(res,code);
+    });
+  },
+  decryptData : function(res,code){
+     util.serviceUtil.post(conf.service.decrptUserInfo,{
+              code : code,
+              encryptedData : res.encryptedData,
+              iv : res.iv
+           },function(result){
+              console.log(result)
+           });
   },
   getUserInfo:function(cb){
     var that = this
-    if(this.globalData.userInfo){
-      typeof cb == "function" && cb(this.globalData.userInfo)
+    if(this.globalData.user){
+      // typeof cb == "function" && cb(this.globalData.user)
     }else{
       //调用登录接口
       wx.login({
-        success: function () {
+        success: function (result) {
           wx.getUserInfo({
             success: function (res) {
-              that.globalData.userInfo = res.userInfo
-              typeof cb == "function" && cb(that.globalData.userInfo)
+              that.globalData.user = res
+              typeof cb == "function" && cb(res,result.code)
             }
           })
         }
@@ -25,6 +36,6 @@ App({
     }
   },
   globalData:{
-    userInfo:null
+    user:null
   }
 })

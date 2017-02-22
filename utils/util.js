@@ -42,6 +42,7 @@ var serviceUtil = {
                  success(res);
               },
               fail : function(err){
+                 console.log(err);
                  if(typeof fail === 'function'){
                      fail(err);
                  }
