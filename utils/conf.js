@@ -1,7 +1,7 @@
 var conf = {
    host : 'https://localhost',
    service : {
-      decrptUserInfo : '/user/decrptUserInfo', 
+      login : '/user/login', 
       loadHomePageCommunities : '/community/loadIndexPageCommunities' 
    }
 };

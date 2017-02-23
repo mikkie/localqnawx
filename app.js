@@ -3,39 +3,29 @@ var conf = require('./utils/conf');
 //app.js
 App({
   onLaunch: function () {
-    var that = this;
-    this.getUserInfo(function(res,code){
-      that.decryptData(res,code);
-    });
+
   },
-  decryptData : function(res,code){
-     util.serviceUtil.post(conf.service.decrptUserInfo,{
-              code : code,
-              encryptedData : res.encryptedData,
-              iv : res.iv
-           },function(result){
-              console.log(result)
-           });
-  },
-  getUserInfo:function(cb){
-    var that = this
-    if(this.globalData.user){
-      // typeof cb == "function" && cb(this.globalData.user)
-    }else{
-      //调用登录接口
-      wx.login({
-        success: function (result) {
-          wx.getUserInfo({
-            success: function (res) {
-              that.globalData.user = res
-              typeof cb == "function" && cb(res,result.code)
-            }
-          })
-        }
-      })
+  login:function(callback){
+    if(this.globalData.login){
+       callback();
+       return;
     }
+    //调用登录接口
+    var that = this;
+    wx.login({
+      success: function (result) {
+         util.serviceUtil.post(conf.service.login,{code : result.code},function(res){
+           wx.setStorageSync('sessionId', res.data.success);
+           console.log('sessionId=' + res.data.success);
+           that.globalData.login = true;
+           callback();
+       },function(err){
+           console.log(err);
+       });
+      }
+   })
   },
-  globalData:{
-    user:null
+  globalData : {
+     login : false
   }
 })

@@ -18,13 +18,15 @@ Page({
   },
   onLoad: function () {
       var that = this;
-      wx.getLocation({
-        type : 'wgs84',
-        success : function(res){
-           var lat = res.latitude;
-           var lng = res.longitude;
-           util.serviceUtil.post(conf.service.loadHomePageCommunities,{
-              location : [lng,lat]
+      app.login(function(){
+        wx.getLocation({
+          type : 'wgs84',
+          success : function(res){
+             var lat = res.latitude;
+             var lng = res.longitude;
+             util.serviceUtil.post(conf.service.loadHomePageCommunities,{
+              location : [lng,lat],
+              sessionId : wx.getStorageSync('sessionId')
            },function(res){
               var array = [];
               util.arrayUtil.mergeArray(array,res.data.success.near);
@@ -33,7 +35,8 @@ Page({
            },function(err){
                console.log(err);
            });
-        }
+         }
+       });
       });
   }
 })
