@@ -5,7 +5,8 @@ var conf = {
       loadHomePageCommunities : '/community/loadIndexPageCommunities',
       createCommunity : '/community/createNewCommunity',
       findCommunityByName : '/community/findCommunitiesByName',
-      toggleStarCommunity : '/user/toggleStarCommunity' 
+      toggleStarCommunity : '/user/toggleStarCommunity',
+      createNewTopic : '/topic/createNewTopic' 
    }
 };
 

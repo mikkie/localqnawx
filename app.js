@@ -5,6 +5,23 @@ App({
   onLaunch: function () {
 
   },
+  getUserInfo : function(callback){
+    if(this.globalData.userInfo){
+       if(typeof callback == 'function'){
+          callback(this.globalData.userInfo);
+       }
+       return;
+    }
+    var that = this;
+    wx.getUserInfo({
+      success: function(res) {
+        that.globalData.userInfo = res.userInfo;
+        if(typeof callback == 'function'){
+           callback(res.userInfo);
+        }
+      }
+    }) 
+  },
   login:function(callback){
     if(this.globalData.login){
        callback();
@@ -19,6 +36,7 @@ App({
            console.log('sessionId=' + res.data.success);
            that.globalData.login = true;
            callback();
+           that.getUserInfo();
        },function(err){
            console.log(err);
        });
@@ -26,6 +44,7 @@ App({
    })
   },
   globalData : {
-     login : false
+     login : false,
+     userInfo : null
   }
 })

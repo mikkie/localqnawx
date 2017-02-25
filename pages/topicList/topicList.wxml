@@ -47,7 +47,7 @@
     </view>
   </view>
   <view class="footer">
-    <navigator url="../newTopic/newTopic" hover-class="none">
+    <navigator url="../newTopic/newTopic?communityId={{communityId}}&curLocl={{currentLoc}}" hover-class="none">
       <image class="addIcon" src="../../images/add.png"></image>
     </navigator>
   </view>
