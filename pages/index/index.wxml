@@ -2,16 +2,17 @@
 <view class="container">
   <view class="header">
     <image class="icon" src="../../images/magnifier.png"></image>
-    <input type="text" placeholder="输入社区名称进行搜索" class="currentLocation" value="{{currentLoc}}"/>
+    <input type="text" placeholder="输入社区名称进行搜索" class="currentLocation" value="{{currentLoc}}" bindconfirm="bindSearchCommunity"/>
     <image class="icon" src="../../images/map.png" bindtap="openMap"></image>
   </view>
   <view class="content">
-    <view wx:for="{{communities}}" wx:for-item="community">
+    <view wx:for="{{communities}}" wx:key="_id" wx:for-item="community">
       <view class="community">
        <view class="chead">
          <view class="avatar" style="background-color:#{{community.avatar.color}}"><text class="avatarC">{{community.avatar.character}}</text></view>
          <navigator class="cname" url="../topicList/topicList?curLocl={{community.name}}" hover-class="none"><text>{{community.name}}</text></navigator>
-         <image class="icon" src="../../images/star-grey.png"></image>
+         <block wx:if="{{community.star}}"><image class="icon" src="../../images/star-yellow.png" bindtap="handleStar" data-isAdd="false" data-communityId="{{community._id}}" data-index="{{index}}"></image></block>
+         <block wx:else><image class="icon" src="../../images/star-grey.png" bindtap="handleStar" data-isAdd="true" data-communityId="{{community._id}}" data-index="{{index}}"></image></block>
        </view>
      </view>
     </view>

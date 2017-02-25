@@ -24,7 +24,8 @@ var stringUtil = {
       if(!str){
          return true;
       }
-      return str.test(/\s+/);
+      str = str.replace(/(^\s*)|(\s*$)/g, "")
+      return str.length == 0;
    }
 };
 
