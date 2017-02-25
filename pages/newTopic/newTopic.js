@@ -40,9 +40,7 @@ Page({
               expireDateUnit : that.data.expireDateUnits[that.data.periodIndex],
               anonymous : that.data.anonymous
            },function(res){
-              wx.switchTab({
-                url: '../topicList/topicList?communityId='+that.data.communityId+'&curLocl='+that.data.currentLoc
-              });
+              wx.navigateBack({delta: 1})
            },function(err){
                console.log(err);
            });
