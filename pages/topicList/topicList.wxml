@@ -19,6 +19,11 @@
       </view>
     </view>
     </view>
+    <view class="community" hidden="{{topics.length > 0}}">
+      <view class="chead" style="justify-content:flex-start;">
+        <text style="font-size:11pt;">该社区暂无话题</text>
+      </view>
+    </view>  
   </view>
   <view class="footer">
     <navigator url="../newTopic/newTopic?communityId={{communityId}}&curLocl={{currentLoc}}" hover-class="none">
