@@ -25,5 +25,25 @@ Page({
        app.login(function(){
            that.loadTopicsByCommunityId(that);
        });
-    }
+    },
+    handleStar : function(e){
+     var index = e.currentTarget.dataset.index;
+     var topic = this.data.topics[index];
+     if(topic.star){
+        delete topic.star;
+     }
+     else{
+        topic.star = true;
+     }
+     this.setData({topics : this.data.topics});
+     utils.serviceUtil.post(conf.service.toggleStarTopic,{
+              topicId : e.currentTarget.dataset.topicid,
+              isAdd : e.currentTarget.dataset.isadd, 
+              sessionId : wx.getStorageSync('sessionId')
+           },function(res){
+              //that.setData({communities : res.data.success});
+           },function(err){
+               console.log(err);
+            });
+   }
 });
