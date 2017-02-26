@@ -6,7 +6,8 @@ var conf = {
       createCommunity : '/community/createNewCommunity',
       findCommunityByName : '/community/findCommunitiesByName',
       toggleStarCommunity : '/user/toggleStarCommunity',
-      createNewTopic : '/topic/createNewTopic' 
+      createNewTopic : '/topic/createNewTopic',
+      findTopicsByCommunityId : '/topic/findTopicsByCommunityId' 
    }
 };
 

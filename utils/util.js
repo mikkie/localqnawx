@@ -48,7 +48,27 @@ var serviceUtil = {
                      fail(err);
                  }
               }
-            });  
+     });  
+  },
+  "get" : function(url,data,success,fail){
+     wx.request({
+              url: conf.host + url, 
+              data: data,
+              method : 'get',
+              header: {
+                'content-type': 'application/json'
+              },
+              dataType : 'json',
+              success: function(res) {
+                 success(res);
+              },
+              fail : function(err){
+                 console.log(err);
+                 if(typeof fail === 'function'){
+                     fail(err);
+                 }
+              }
+     });
   }
 };
 
