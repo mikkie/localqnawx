@@ -19,12 +19,14 @@ Page({
             console.log(err); 
         });
     },
-    onLoad : function(options){
+    onShow : function(){
        var that = this; 
-       this.setData({currentLoc : options.curLocl,communityId : options.communityId});
        app.login(function(){
            that.loadTopicsByCommunityId(that);
        });
+    },
+    onLoad : function(options){
+        this.setData({currentLoc : options.curLocl,communityId : options.communityId});
     },
     handleStar : function(e){
      var index = e.currentTarget.dataset.index;

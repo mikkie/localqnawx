@@ -5,9 +5,9 @@
     <text class="currentLocation">{{currentLoc}}</text>
   </view>
   <view class="content">
-    <form>
+    <form bindsubmit="submitTopic">
       <view>
-         <textarea class="topicContent" placeholder="输入你的话题内容" maxlength="150" placeholder-style="font-size:11pt;" auto-focus bindblur="confirmContent"/>
+         <textarea name="topicContent" class="topicContent" placeholder="输入你的话题内容" maxlength="150" placeholder-style="font-size:11pt;"  bindblur="confirmContent" auto-focus="true"/>
         <view class="section" style="display:flex;">
           <label>有效期:</label>
           <picker mode="selector" value="{{periodIndex}}" range="{{periodArray}}" bindchange="listenerPeriodSelected">
@@ -19,7 +19,7 @@
           <switch bindchange="toggleAnonymous"/>
         </view>
         <view class="section">
-           <button type="primary" bindtap="submitTopic">提交</button>
+           <button type="primary" formType="submit">提交</button>
         </view>
       </view>
     </form>

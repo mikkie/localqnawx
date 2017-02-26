@@ -23,7 +23,7 @@ Page({
         periodIndex: e.detail.value
       });
   },
-  submitTopic : function(){
+  submitTopic : function(e){
      var that = this;
      if(utils.stringUtil.isEmptyOrNull(this.data.communityId) || utils.stringUtil.isEmptyOrNull(this.data.currentLoc) || utils.stringUtil.isEmptyOrNull(this.data.content)){
          return;

@@ -77,7 +77,7 @@ Page({
          }
        });
   },
-  onLoad: function () {
+  onShow: function () {
       var that = this;
       app.login(function(){
          that.loadHomePageCommunities(that);
