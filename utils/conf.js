@@ -8,7 +8,10 @@ var conf = {
       toggleStarCommunity : '/user/toggleStarCommunity',
       toggleStarTopic : '/user/toggleStarTopics',
       createNewTopic : '/topic/createNewTopic',
-      findTopicsByCommunityId : '/topic/findTopicsByCommunityId' 
+      findTopicsByCommunityId : '/topic/findTopicsByCommunityId',
+      findCommentsByTopicId : '/comment/findCommentsByTopicId',
+      createNewComment : '/comment/createNewComment',
+      getTopicById : '/topic/getTopicById' 
    }
 };
 
