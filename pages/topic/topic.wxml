@@ -1,13 +1,13 @@
 <!--topic.wxml-->
 <view class="container">
   <view class="header">
-   <view class="community" style="border-bottom:none;">
+   <view class="community" style="border-bottom:none;padding:0;">
     <view class="chead" style="justify-content:flex-start;">
         <image class="userAvatar" mode="aspectFit" src="{{topic.owner.avatar}}"></image>
         <text class="uName">{{topic.owner.name}}</text>
         <text class="cDate">{{topic.createDate}}</text>
       </view>
-      <view class="ccontent" style="padding:0;">
+      <view class="ccontent" style="padding-top:5pt;">
         <text>{{topic.content}}</text>
       </view>
     </view>  
