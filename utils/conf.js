@@ -12,7 +12,8 @@ var conf = {
       findCommentsByTopicId : '/comment/findCommentsByTopicId',
       createNewComment : '/comment/createNewComment',
       getTopicById : '/topic/getTopicById',
-      upOrDownComment : '/comment/upOrDownComment' 
+      upOrDownComment : '/comment/upOrDownComment',
+      findTopicsByOwner : '/topic/findTopicsByOwner' 
    }
 };
 

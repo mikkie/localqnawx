@@ -2,7 +2,7 @@
 var util = require('../../utils/util'),
 conf = require('../../utils/conf');
 //获取应用实例
-var app = getApp()
+var app = getApp();
 Page({
   data: {
     currentLoc : '',
