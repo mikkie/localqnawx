@@ -1,9 +1,9 @@
 <!--my.wxml-->
 <view class="container">
   <view class="header">
-    <text class="tab">我的话题</text>
-    <text class="tab lowlight">我的回答</text>
-    <text class="tab lowlight">@我</text>
+    <text class="{{tab0}}" data-index="0" bindtap="changeTab">我的话题</text>
+    <text class="{{tab1}}" data-index="1" bindtap="changeTab">我的回答</text>
+    <text class="{{tab2}}" data-index="2" bindtap="changeTab">@我</text>
   </view>
   <view class="content">
     <view wx:for="{{topics}}" wx:key="_id" wx:for-item="topic">
@@ -13,9 +13,11 @@
         <text class="uName">{{topic.owner.name}}</text>
         <text class="cDate">{{topic.createDate}}</text>
       </view>
+      <navigator url="../topic/topic?topicId={{topic._id}}" hover-class="none">
       <view class="ccontent">
-        <navigator url="../topic/topic" hover-class="none"><text>{{topic.content}}</text></navigator>
+        <navigator url="../topic/topic?topicId={{topic._id}}" hover-class="none"><text>{{topic.content}}</text></navigator>
       </view>
+      </navigator>
     </view>
     </view>
   </view>  
