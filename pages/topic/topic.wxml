@@ -24,8 +24,18 @@
         <text>{{comment.content}}</text>
       </view>
       <view class="cfooter">
-        <image class="icon small" src="../../images/thumbs-up.png"></image>
-        <image class="icon small" src="../../images/thumbs-down.png" style="margin-left:15px;float:right;"></image>
+        <block wx:if="{{comment.thumbup}}">
+        <image class="icon small" src="../../images/thumbs-up.png" bindtap="upAndDownComment" data-isup="true" data-index="{{index}}" data-commentid="{{comment._id}}"></image>
+        </block>
+        <block wx:else>
+        <image class="icon small" src="../../images/thumbs-up-grey.png" bindtap="upAndDownComment" data-isup="true" data-index="{{index}}" data-commentid="{{comment._id}}"></image>
+        </block>
+        <block wx:if="{{comment.thumbdown}}">
+        <image class="icon small" src="../../images/thumbs-down.png" style="margin-left:15px;float:right;" bindtap="upAndDownComment" data-isup="false" data-index="{{index}}" data-commentid="{{comment._id}}"></image>
+        </block>
+        <block wx:else>
+        <image class="icon small" src="../../images/thumbs-down-grey.png" style="margin-left:15px;float:right;" bindtap="upAndDownComment" data-isup="false" data-index="{{index}}" data-commentid="{{comment._id}}"></image>
+        </block>
       </view>
     </view>
     </view>

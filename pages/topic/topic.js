@@ -61,5 +61,36 @@ Page({
     },
     confirmContent : function(e){
         this.data.content = e.detail.value;
+    },
+    upAndDownComment : function(e){
+        var index = e.target.dataset.index;
+        var isUp = e.target.dataset.isup;
+        if(isUp == 'true'){
+            if(this.data.comments[index].thumbup){
+                return;
+            }
+            else{
+               this.data.comments[index].thumbup = true;
+               this.setData({comments : this.data.comments}); 
+            }
+        }
+        else{
+            if(this.data.comments[index].thumbdown){
+                return;
+            }
+            else{
+               this.data.comments[index].thumbdown = true;
+               this.setData({comments : this.data.comments}); 
+            }
+        }
+        utils.serviceUtil.get(conf.service.upOrDownComment,{
+              commentId : e.target.dataset.commentid,
+              isUp : isUp
+           },function(res){
+              //that.setData({content : ''}); 
+              //that.loadComment();
+           },function(err){
+               console.log(err);
+           });
     }
 });

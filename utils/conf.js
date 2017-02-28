@@ -11,7 +11,8 @@ var conf = {
       findTopicsByCommunityId : '/topic/findTopicsByCommunityId',
       findCommentsByTopicId : '/comment/findCommentsByTopicId',
       createNewComment : '/comment/createNewComment',
-      getTopicById : '/topic/getTopicById' 
+      getTopicById : '/topic/getTopicById',
+      upOrDownComment : '/comment/upOrDownComment' 
    }
 };
 
