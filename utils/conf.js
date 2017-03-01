@@ -14,7 +14,10 @@ var conf = {
       getTopicById : '/topic/getTopicById',
       upOrDownComment : '/comment/upOrDownComment',
       findTopicsByOwner : '/topic/findTopicsByOwner',
-      findUserRepliesTopics : '/user/findUserRepliesTopics' 
+      findUserRepliesTopics : '/user/findUserRepliesTopics',
+      findAtmeTopics : '/user/findAtmeTopics',
+      findStarCommunitiesByOwner : '/user/findStarCommunitiesByOwner',
+      findStarTopicsByOwner : '/user/findStarTopicsByOwner' 
    }
 };
 

@@ -26,8 +26,14 @@ Page({
             console.log(err);
        }); 
     },
-    loadAtMe : function(){
-       
+    loadAtMe : function(that){
+       util.serviceUtil.get(conf.service.findAtmeTopics,{
+           sessionId : wx.getStorageSync('sessionId')
+       },function(res){
+            that.setData({topics : res.data.success});
+       },function(err){
+            console.log(err);
+       }); 
     },
     onShow : function(){
         var that = this;
@@ -54,6 +60,7 @@ Page({
        switch(index){
           case "0" : this.loadMyTopic(this); break;
           case "1" : this.loadMyReplies(this); break;
+          case "2" : this.loadAtMe(this); break;
           default : this.loadMyTopic(this); break;   
        }
     }
