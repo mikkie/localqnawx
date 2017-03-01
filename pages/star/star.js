@@ -28,6 +28,34 @@ Page({
             console.log(err);
        });
     }, 
+    handleCommunityStar : function(e){
+        var index = e.currentTarget.dataset.index;
+        this.data.communities.splice(index,1);
+        this.setData({communities : this.data.communities});
+        util.serviceUtil.post(conf.service.toggleStarCommunity,{
+           communityId : e.currentTarget.dataset.communityid,
+           isAdd : 'false', 
+           sessionId : wx.getStorageSync('sessionId')
+        },function(res){
+            //that.setData({communities : res.data.success});
+        },function(err){
+            console.log(err);
+        });
+    },
+    handleTopicStar : function(e){
+        var index = e.currentTarget.dataset.index;
+        this.data.topics.splice(index,1);
+        this.setData({topics : this.data.topics});
+        util.serviceUtil.post(conf.service.toggleStarTopic,{
+            topicId : e.currentTarget.dataset.topicid,
+            isAdd : 'false', 
+            sessionId : wx.getStorageSync('sessionId')
+        },function(res){
+            //that.setData({communities : res.data.success});
+        },function(err){
+            console.log(err);
+        });
+    },
     onShow : function(){
         var that = this;
         app.login(function(){
