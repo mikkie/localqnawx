@@ -17,6 +17,18 @@ Page({
             console.log(err);
        }); 
     },
+    loadMyReplies : function(that){
+       util.serviceUtil.get(conf.service.findUserRepliesTopics,{
+           sessionId : wx.getStorageSync('sessionId')
+       },function(res){
+            that.setData({topics : res.data.success});
+       },function(err){
+            console.log(err);
+       }); 
+    },
+    loadAtMe : function(){
+       
+    },
     onShow : function(){
         var that = this;
         app.login(function(){
@@ -25,13 +37,24 @@ Page({
     },
     changeTab : function(e){
        var index = e.target.dataset.index; 
-       for(var i = 0; i < 2; i++){         
-        //   if(i == index){
-        //       this.setData({'tab' + i : 'tab'});
-        //   }
-        //   else{
-        //       this.data[tab + i] = "tab lowlight";
-        //   }   
-       }  
+       for(var i = 0; i < 3; i++){    
+          var key = 'tab' + i;      
+          if(i == index){  
+              this.data[key] = 'tab';
+          }
+          else{
+              this.data[key] = 'tab lowlight';
+          }   
+       } 
+       this.setData({
+           tab0 : this.data.tab0,
+           tab1 : this.data.tab1,
+           tab2 : this.data.tab2
+       }); 
+       switch(index){
+          case "0" : this.loadMyTopic(this); break;
+          case "1" : this.loadMyReplies(this); break;
+          default : this.loadMyTopic(this); break;   
+       }
     }
 });

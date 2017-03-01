@@ -27,7 +27,7 @@ Page({
        utils.serviceUtil.get(conf.service.getTopicById,{
             topicId : that.data.topicId,
        },function(res){
-            that.setData({topic : res.data.success}); 
+            that.setData({topic : res.data.success[0]}); 
        },function(err){
             console.log(err);
        });

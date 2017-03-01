@@ -13,7 +13,8 @@ var conf = {
       createNewComment : '/comment/createNewComment',
       getTopicById : '/topic/getTopicById',
       upOrDownComment : '/comment/upOrDownComment',
-      findTopicsByOwner : '/topic/findTopicsByOwner' 
+      findTopicsByOwner : '/topic/findTopicsByOwner',
+      findUserRepliesTopics : '/user/findUserRepliesTopics' 
    }
 };
 
