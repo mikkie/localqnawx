@@ -6,6 +6,7 @@ Page({
         tab0 : "tab",
         tab1 : "tab lowlight",
         communities : [],
+        index : "0",
         topics : []
     },
     loadStarCommunities : function(that){
@@ -56,10 +57,17 @@ Page({
             console.log(err);
         });
     },
+    loadData : function(that){
+       switch(this.data.index){
+          case "0" : that.loadStarCommunities(that); break;
+          case "1" : that.loadStarTopics(that); break;
+          default :  break;   
+       }
+    },
     onShow : function(){
         var that = this;
         app.login(function(){
-           that.loadStarCommunities(that);
+           that.loadData(that);
         });
     },
     changeTab : function(e){
@@ -74,14 +82,11 @@ Page({
           }   
        } 
        this.setData({
+           index : index,
            tab0 : this.data.tab0,
            tab1 : this.data.tab1,
            tab2 : this.data.tab2
        }); 
-       switch(index){
-          case "0" : this.loadStarCommunities(this); break;
-          case "1" : this.loadStarTopics(this); break;
-          default :  break;   
-       }
+       this.loadData(this);
     }
 });
