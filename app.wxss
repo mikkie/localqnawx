@@ -170,3 +170,8 @@
   font-size: 11pt;
   border-bottom: 1px solid lightgrey;
 }
+
+
+.common-font{
+  font-size : 11pt;
+}

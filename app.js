@@ -32,7 +32,8 @@ App({
     wx.login({
       success: function (result) {
          util.serviceUtil.post(conf.service.login,{code : result.code},function(res){
-           wx.setStorageSync('sessionId', res.data.success);
+           wx.setStorageSync('sessionId', res.data.success.sessionId);
+           wx.setStorageSync('settings', res.data.success.settings);
            console.log('sessionId=' + res.data.success);
            that.globalData.login = true;
            callback();

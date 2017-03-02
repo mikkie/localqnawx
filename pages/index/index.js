@@ -57,6 +57,7 @@ Page({
   findCommunitiesByLocAndRecommend : function(loc,that){
            util.serviceUtil.post(conf.service.loadHomePageCommunities,{
               location : loc,
+              distance : wx.getStorageSync('settings').distance,
               sessionId : wx.getStorageSync('sessionId')
            },function(res){
               var array = [];

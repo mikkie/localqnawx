@@ -17,7 +17,8 @@ var conf = {
       findUserRepliesTopics : '/user/findUserRepliesTopics',
       findAtmeTopics : '/user/findAtmeTopics',
       findStarCommunitiesByOwner : '/user/findStarCommunitiesByOwner',
-      findStarTopicsByOwner : '/user/findStarTopicsByOwner' 
+      findStarTopicsByOwner : '/user/findStarTopicsByOwner',
+      updateSettings : '/user/updateSettings'
    }
 };
 

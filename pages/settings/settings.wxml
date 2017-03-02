@@ -1,18 +1,13 @@
 <!--settings.wxml-->
 <view class="container">
   <view class="header">
-    <image class="settingAvatar" mode="aspectFit" src="http://www.yamixed.com/static/images/no_image.jpg"></image>
-    <text class="uName">Aqua</text>
+    <image class="settingAvatar" mode="aspectFit" src="{{userInfo.avatarUrl}}"></image>
+    <text class="uName">{{userInfo.nickName}}</text>
   </view>
   <view class="content">
     <view class="community">
-       <text>设置1</text>
-    </view>
-    <view class="community">
-       <text>设置2</text>
-    </view>
-    <view class="community">
-       <text>设置3</text>
+       <text class="common-font">探测范围(公里)</text>
+       <slider min="1" max="10" value="{{settings.distance}}" step="1" show-value="true" bindchange="changeDistance"/>
     </view>
   </view>
 </view>  
