@@ -6,6 +6,7 @@ Page({
         tab0 : "tab",
         tab1 : "tab lowlight",
         tab2 : "tab lowlight",
+        index : "0",
         topics : []
     },
     loadMyTopic : function(that){
@@ -38,8 +39,16 @@ Page({
     onShow : function(){
         var that = this;
         app.login(function(){
-           that.loadMyTopic(that);
+           that.loadData(that);
         });
+    },
+    loadData : function(that){
+       switch(that.data.index){
+          case "0" : that.loadMyTopic(that); break;
+          case "1" : that.loadMyReplies(that); break;
+          case "2" : that.loadAtMe(that); break;
+          default : that.loadMyTopic(that); break;   
+       }  
     },
     changeTab : function(e){
        var index = e.target.dataset.index; 
@@ -55,13 +64,9 @@ Page({
        this.setData({
            tab0 : this.data.tab0,
            tab1 : this.data.tab1,
-           tab2 : this.data.tab2
+           tab2 : this.data.tab2,
+           index : index
        }); 
-       switch(index){
-          case "0" : this.loadMyTopic(this); break;
-          case "1" : this.loadMyReplies(this); break;
-          case "2" : this.loadAtMe(this); break;
-          default : this.loadMyTopic(this); break;   
-       }
+       this.loadData(this);
     }
 });

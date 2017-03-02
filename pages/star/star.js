@@ -58,7 +58,7 @@ Page({
         });
     },
     loadData : function(that){
-       switch(this.data.index){
+       switch(that.data.index){
           case "0" : that.loadStarCommunities(that); break;
           case "1" : that.loadStarTopics(that); break;
           default :  break;   
