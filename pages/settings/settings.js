@@ -16,13 +16,13 @@ Page({
     updateSettings : function(that){
        util.serviceUtil.post(conf.service.updateSettings,{sessionId : wx.getStorageSync('sessionId'),
            settings : that.data.settings},function(res){
-               //TODO failed update distance
-           //wx.setStorageSync('settings',res.data.success.settings);
+           wx.setStorageSync('settings',res.data.success);
        },function(err){
            console.log(err);
        });
     },
-    changeDistance : function(){
+    changeDistance : function(e){
+        this.data.settings.distance = e.detail.value;
         this.updateSettings(this);
     }
 });
