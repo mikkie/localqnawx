@@ -20,5 +20,10 @@
       </navigator>
     </view>
     </view>
+    <view class="community" hidden="{{topics.length > 0}}">
+      <view class="chead" style="justify-content:flex-start;">
+        <text style="font-size:11pt;">暂无话题</text>
+      </view>
+    </view>
   </view>  
 </view>

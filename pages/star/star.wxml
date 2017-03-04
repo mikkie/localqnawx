@@ -29,5 +29,15 @@
       </navigator>
     </view>
     </view>
+    <view class="community" hidden="{{index == '1' || communities.length > 0}}">
+      <view class="chead" style="justify-content:flex-start;">
+        <text style="font-size:11pt;">暂无关注社区</text>
+      </view>
+    </view>
+    <view class="community" hidden="{{index == '0' || topics.length > 0}}">
+      <view class="chead" style="justify-content:flex-start;">
+        <text style="font-size:11pt;">暂无关注话题</text>
+      </view>
+    </view>
   </view>  
 </view>
