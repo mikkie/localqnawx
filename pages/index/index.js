@@ -80,6 +80,7 @@ Page({
   },
   onShow: function () {
       var that = this;
+      that.setData({currentLoc : ''});
       app.login(function(){
          that.loadHomePageCommunities(that);
       });
