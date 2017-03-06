@@ -1,6 +1,6 @@
 <!--topicList.wxml-->
 <view class="container">
-  <view class="header" style="background-color:lightgrey;">
+  <view class="header" style="background-color:#F2F2F2;">
     <image class="icon" src="../../images/map.png"></image>
     <text class="currentLocation">{{currentLoc}}</text>
   </view>
