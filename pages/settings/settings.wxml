@@ -9,5 +9,9 @@
        <text class="common-font">探测范围(公里)</text>
        <slider min="1" max="10" value="{{settings.distance}}" step="1" show-value="true" bindchange="changeDistance"/>
     </view>
+    <view class="community">
+       <text class="common-font">说明:</text>
+       <text class="mini-font">{{globalSettings.readMe}}</text>
+    </view>
   </view>
 </view>  

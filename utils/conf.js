@@ -18,7 +18,8 @@ var conf = {
       findAtmeTopics : '/user/findAtmeTopics',
       findStarCommunitiesByOwner : '/user/findStarCommunitiesByOwner',
       findStarTopicsByOwner : '/user/findStarTopicsByOwner',
-      updateSettings : '/user/updateSettings'
+      updateSettings : '/user/updateSettings',
+      getGlobalSettings : '/globalSetting/getGlobalSettings'
    }
 };
 

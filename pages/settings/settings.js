@@ -4,14 +4,23 @@ conf = require('../../utils/conf');
 Page({
    data : {
        settings : null,
-       userInfo : null
+       userInfo : null,
+       globalSettings : null 
    },
    onShow : function(){
         var that = this;
         app.login(function(){
            that.setData({userInfo : app.globalData.userInfo});
            that.setData({settings : wx.getStorageSync('settings')}); 
+           that.loadGlobalSettings(that);
         });
+    },
+    loadGlobalSettings : function(that){
+        util.serviceUtil.get(conf.service.getGlobalSettings,{},function(res){
+           that.setData({'globalSettings':res.data.success});
+       },function(err){
+           console.log(err);
+       });
     },
     updateSettings : function(that){
        util.serviceUtil.post(conf.service.updateSettings,{sessionId : wx.getStorageSync('sessionId'),
