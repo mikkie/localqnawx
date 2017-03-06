@@ -145,6 +145,10 @@
   height:16px;
 }
 
+.mini-font{
+  font-size : 10pt;
+}
+
 .section{
   margin-top : 10px;
   font-size: 11pt;

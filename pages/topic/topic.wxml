@@ -25,16 +25,24 @@
       </view>
       <view class="cfooter">
         <block wx:if="{{comment.thumbup}}">
-        <image class="icon small" src="../../images/thumbs-up.png" bindtap="upAndDownComment" data-isup="true" data-index="{{index}}" data-commentid="{{comment._id}}"></image>
+        <view>
+        <image class="icon small" src="../../images/thumbs-up.png" bindtap="upAndDownComment" data-isup="true" data-index="{{index}}" data-commentid="{{comment._id}}"></image><text class="mini-font">{{comment.up}}</text>
+        </view>
         </block>
         <block wx:else>
-        <image class="icon small" src="../../images/thumbs-up-grey.png" bindtap="upAndDownComment" data-isup="true" data-index="{{index}}" data-commentid="{{comment._id}}"></image>
+        <view>
+        <image class="icon small" src="../../images/thumbs-up-grey.png" bindtap="upAndDownComment" data-isup="true" data-index="{{index}}" data-commentid="{{comment._id}}"></image><text class="mini-font">{{comment.up}}</text>
+        </view>
         </block>
         <block wx:if="{{comment.thumbdown}}">
-        <image class="icon small" src="../../images/thumbs-down.png" style="margin-left:15px;float:right;" bindtap="upAndDownComment" data-isup="false" data-index="{{index}}" data-commentid="{{comment._id}}"></image>
+        <view style="margin-left:15px;float:right;">
+        <image class="icon small" src="../../images/thumbs-down.png"  bindtap="upAndDownComment" data-isup="false" data-index="{{index}}" data-commentid="{{comment._id}}"></image><text class="mini-font">{{comment.down}}</text>
+        </view>
         </block>
         <block wx:else>
-        <image class="icon small" src="../../images/thumbs-down-grey.png" style="margin-left:15px;float:right;" bindtap="upAndDownComment" data-isup="false" data-index="{{index}}" data-commentid="{{comment._id}}"></image>
+        <view style="margin-left:15px;float:right;">
+        <image class="icon small" src="../../images/thumbs-down-grey.png"  bindtap="upAndDownComment" data-isup="false" data-index="{{index}}" data-commentid="{{comment._id}}"></image><text class="mini-font">{{comment.down}}</text>
+        </view>
         </block>
       </view>
     </view>

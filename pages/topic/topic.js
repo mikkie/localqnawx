@@ -15,7 +15,8 @@ Page({
     loadComment : function(){
        var that = this; 
        utils.serviceUtil.get(conf.service.findCommentsByTopicId,{
-              topicId : that.data.topicId
+              topicId : that.data.topicId,
+              sessionId : wx.getStorageSync('sessionId')
        },function(res){
               that.setData({comments : res.data.success});
        },function(err){
@@ -71,6 +72,7 @@ Page({
             }
             else{
                this.data.comments[index].thumbup = true;
+               this.data.comments[index].up++;
                this.setData({comments : this.data.comments}); 
             }
         }
@@ -80,6 +82,7 @@ Page({
             }
             else{
                this.data.comments[index].thumbdown = true;
+               this.data.comments[index].down++;
                this.setData({comments : this.data.comments}); 
             }
         }
