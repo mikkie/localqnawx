@@ -7,7 +7,7 @@
   <view class="content">
      <form>
        <view class="row">
-         <input class="communityName" type="text" placeholder="输入社区名称" bindinput="bindNameInput"/>
+         <input class="communityName" type="text" placeholder="输入社区名称" bindinput="bindNameInput" value="{{communityName}}"/>
        </view>       
      </form>
      <button type="primary" class="okBtn" bindtap="submitNewCommunity">提交</button>

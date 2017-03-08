@@ -13,7 +13,7 @@ Page({
       wx.chooseLocation({
           success : function(obj){
              that.setData({currentLoc : obj.name});
-             that.findCommunitiesByLocAndRecommend([obj.longitude,obj.latitude],that);
+             that.findCommunitiesByLocAndRecommend([parseFloat(obj.longitude),parseFloat(obj.latitude)],that);
           }
       });
   },

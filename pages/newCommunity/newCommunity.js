@@ -10,7 +10,9 @@ Page({
       var that = this;   
       wx.chooseLocation({
           success : function(obj){
-             that.setData({currentLoc : obj.name,pos : [obj.longitude,obj.latitude]});
+             if(obj.name){
+                that.setData({currentLoc : obj.name,communityName : obj.name,pos : [parseFloat(obj.longitude),parseFloat(obj.latitude)]});
+             } 
           }
       });
   },

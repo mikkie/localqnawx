@@ -2,9 +2,6 @@ var util = require('./utils/util');
 var conf = require('./utils/conf');
 //app.js
 App({
-  onLaunch: function () {
-
-  },
   getUserInfo : function(callback){
     if(this.globalData.userInfo){
        if(typeof callback == 'function'){
@@ -22,30 +19,38 @@ App({
       }
     }) 
   },
-  login:function(callback){
-    if(this.globalData.login){
-       callback();
-       return;
-    }
-    //调用登录接口
-    var that = this;
-    wx.login({
+  doLogin : function(callback,that){
+     wx.login({
       success: function (result) {
          util.serviceUtil.post(conf.service.login,{code : result.code},function(res){
            wx.setStorageSync('sessionId', res.data.success.sessionId);
            wx.setStorageSync('settings', res.data.success.settings);
            console.log('sessionId=' + res.data.success);
-           that.globalData.login = true;
-           callback();
            that.getUserInfo();
+           if(typeof callback == 'function'){
+              callback();
+           }
        },function(err){
            console.log(err);
        });
       }
-   })
+   });  
+  },
+  login:function(callback){
+    var that = this;
+    wx.checkSession({
+      success: function(){
+         callback();
+      },
+      fail: function(){
+         that.doLogin(callback,that);
+      }
+    });
+  },
+  onLaunch : function(){
+      this.doLogin(null,this);
   },
   globalData : {
-     login : false,
      userInfo : null
   }
 })
