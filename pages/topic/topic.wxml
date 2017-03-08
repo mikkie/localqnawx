@@ -51,7 +51,7 @@
   <view class="footer">
     <form bindsubmit="submitComment">
     <view class="fcontainer">
-      <textarea class="qInput" placeholder="输入你的回答" maxlength="150" fixed="true" placeholder-style="font-size:11pt;" auto-height="true" bindblur="confirmContent" auto-focus="true" value="{{content}}"/>匿<checkbox-group bindchange="toggleAnonymous"><checkbox /></checkbox-group>
+      <textarea class="qInput" placeholder="输入你的回答" maxlength="150" fixed="true" placeholder-style="font-size:11pt;" auto-height="true" bindblur="confirmContent" value="{{content}}"/>匿<checkbox-group bindchange="toggleAnonymous"><checkbox /></checkbox-group>
       <button class="okBtn" type="primary" size="mini" formType="submit">提交</button>
     </view>
     </form>
