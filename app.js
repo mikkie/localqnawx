@@ -47,7 +47,7 @@ App({
       }
     });
   },
-  onLaunch : function(){
+  onShow : function(){
       this.doLogin(null,this);
   },
   globalData : {
