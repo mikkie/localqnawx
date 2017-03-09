@@ -1,5 +1,5 @@
 var conf = {
-   host : 'https://www.yamixed.com',
+   host : 'https://localhost:8443',
    service : {
       login : '/user/login', 
       loadHomePageCommunities : '/community/loadIndexPageCommunities',

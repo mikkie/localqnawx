@@ -31,9 +31,17 @@ Page({
               sessionId : wx.getStorageSync('sessionId'),
               name : this.data.communityName
            },function(res){
-              wx.switchTab({
-                url: '../star/star'
-              });
+              if(res.data["401"]){
+                 wx.showModal({
+                   title: '无权限',
+                   content: res.data["401"],       
+                 });
+              }
+              else{
+                wx.switchTab({
+                   url: '../star/star'
+                });
+              }
            },function(err){
                console.log(err);
            });

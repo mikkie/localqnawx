@@ -1,17 +1,22 @@
 <!--settings.wxml-->
 <view class="container">
   <view class="header">
-    <image class="settingAvatar" mode="aspectFit" src="{{userInfo.avatarUrl}}"></image>
-    <text class="uName">{{userInfo.nickName}}</text>
+    <image class="settingAvatar" mode="aspectFit" src="../../images/logo.png"></image>
+    <text class="setting-font">{{globalSettings.about}}</text>
   </view>
   <view class="content">
     <view class="community">
-       <text class="common-font">探测范围(公里)</text>
+       <text class="setting-font">探测范围(公里)</text>
        <slider min="1" max="10" value="{{settings.distance}}" step="1" show-value="true" bindchange="changeDistance"/>
     </view>
-    <view class="community">
-       <text class="common-font">说明:</text>
-       <text class="mini-font">{{globalSettings.readMe}}</text>
+    <view class="community" style="padding:15px;">
+       <text class="common-font">使用说明:</text>
+       <text class="detail setting-font">{{globalSettings.readMe}}</text>
+    </view>
+    <view class="community" style="padding:15px;">
+       <text class="common-font">联系我们:</text>
+       <text class="detail setting-font">Email: {{globalSettings.contact.email}}</text>
+       <text class="detail setting-font">Tel: {{globalSettings.contact.tel}}</text>
     </view>
   </view>
 </view>  

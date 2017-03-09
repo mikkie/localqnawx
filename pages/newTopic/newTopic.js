@@ -40,7 +40,15 @@ Page({
               expireDateUnit : that.data.expireDateUnits[that.data.periodIndex],
               anonymous : that.data.anonymous
            },function(res){
-              wx.navigateBack({delta: 1})
+              if(res.data["401"]){
+                 wx.showModal({
+                   title: '无权限',
+                   content: res.data["401"],       
+                 });
+              }
+              else{
+                 wx.navigateBack({delta: 1}) 
+              }
            },function(err){
                console.log(err);
            });

@@ -53,7 +53,15 @@ Page({
               to : []
            },function(res){
               that.setData({content : ''}); 
-              that.loadComment();
+              if(res.data["401"]){
+                 wx.showModal({
+                   title: '无权限',
+                   content: res.data["401"],       
+                 });
+              }
+              else{
+                 that.loadComment();   
+              }
            },function(err){
                console.log(err);
            });
