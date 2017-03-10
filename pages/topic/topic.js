@@ -139,18 +139,21 @@ Page({
           }       
        });
     },
-    deleteComment : function(){
+    deleteComment : function(e){
+      var that = this;   
       wx.showModal({
           title: '删除确认',
           content: '确认删除该评论?',
           success: function(res) {
               if (res.confirm) {
                   var commentid = e.target.dataset.commentid;
+                  var index = e.target.dataset.index;
                   utils.serviceUtil.post(conf.service.deleteComment,{
                      sessionId : wx.getStorageSync('sessionId'),
                      commentId : commentid
                   },function(res){
-                     wx.navigateBack({delta: 1});
+                     that.data.comments.splice(index,1);
+                     that.setData({comments : that.data.comments});
                   },function(err){
                      console.log(err);
                   });

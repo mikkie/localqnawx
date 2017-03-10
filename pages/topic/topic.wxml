@@ -20,7 +20,7 @@
         <image class="userAvatar" mode="aspectFit" src="{{comment.owner.avatar}}"></image>
         <text class="uName">{{comment.owner.name}}</text>
         <text class="cDate">{{comment.createDate}}</text>
-        <text class="delete" bindtap="deleteComment" data-commentid="{{comment._id}}" hidden="{{!comment.ownByCurrentUser}}">删除</text>
+        <text class="delete" bindtap="deleteComment" data-commentid="{{comment._id}}" hidden="{{!comment.ownByCurrentUser}}" data-index="{{index}}">删除</text>
       </view>
       <view class="ccontent">
         <text>{{comment.content}}</text>

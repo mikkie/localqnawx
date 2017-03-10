@@ -183,6 +183,6 @@
 
 .delete{
   color : #e64340;
-  font-size: 12pt;
+  font-size: 10pt;
   padding-left:10px; 
 }
