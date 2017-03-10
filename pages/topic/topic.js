@@ -27,6 +27,7 @@ Page({
        var that = this; 
        utils.serviceUtil.get(conf.service.getTopicById,{
             topicId : that.data.topicId,
+            sessionId : wx.getStorageSync('sessionId')
        },function(res){
             if(res.data.success && res.data.success.length == 1){
                that.setData({topic : res.data.success[0]}); 
@@ -118,5 +119,43 @@ Page({
            },function(err){
                console.log(err);
            });
+    },
+    deleteTopic : function(e){
+       wx.showModal({
+          title: '删除确认',
+          content: '确认删除该话题?',
+          success: function(res) {
+              if (res.confirm) {
+                  var topicid = e.target.dataset.topicid;
+                  utils.serviceUtil.post(conf.service.deleteTopic,{
+                     sessionId : wx.getStorageSync('sessionId'),
+                     topicId : topicid
+                  },function(res){
+                     wx.navigateBack({delta: 1});
+                  },function(err){
+                     console.log(err);
+                  });
+              }
+          }       
+       });
+    },
+    deleteComment : function(){
+      wx.showModal({
+          title: '删除确认',
+          content: '确认删除该评论?',
+          success: function(res) {
+              if (res.confirm) {
+                  var commentid = e.target.dataset.commentid;
+                  utils.serviceUtil.post(conf.service.deleteComment,{
+                     sessionId : wx.getStorageSync('sessionId'),
+                     commentId : commentid
+                  },function(res){
+                     wx.navigateBack({delta: 1});
+                  },function(err){
+                     console.log(err);
+                  });
+              }
+          }       
+      });
     }
 });

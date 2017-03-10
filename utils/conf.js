@@ -19,7 +19,9 @@ var conf = {
       findStarCommunitiesByOwner : '/user/findStarCommunitiesByOwner',
       findStarTopicsByOwner : '/user/findStarTopicsByOwner',
       updateSettings : '/user/updateSettings',
-      getGlobalSettings : '/globalSetting/getGlobalSettings'
+      getGlobalSettings : '/globalSetting/getGlobalSettings',
+      deleteTopic : '/topic/deleteTopic',
+      deleteComment : '/comment/deleteComment'
    }
 };
 

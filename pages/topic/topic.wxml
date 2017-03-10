@@ -6,6 +6,7 @@
         <image class="userAvatar" mode="aspectFit" src="{{topic.owner.avatar}}"></image>
         <text class="uName">{{topic.owner.name}}</text>
         <text class="cDate">{{topic.createDate}}</text>
+        <text class="delete" bindtap="deleteTopic" data-topicid="{{topic._id}}" hidden="{{!topic.ownByCurrentUser}}">删除</text>
       </view>
       <view class="ccontent" style="padding-top:5pt;">
         <text>{{topic.content}}</text>
@@ -19,6 +20,7 @@
         <image class="userAvatar" mode="aspectFit" src="{{comment.owner.avatar}}"></image>
         <text class="uName">{{comment.owner.name}}</text>
         <text class="cDate">{{comment.createDate}}</text>
+        <text class="delete" bindtap="deleteComment" data-commentid="{{comment._id}}" hidden="{{!comment.ownByCurrentUser}}">删除</text>
       </view>
       <view class="ccontent">
         <text>{{comment.content}}</text>

@@ -180,3 +180,9 @@
 .common-font{
   font-size : 11pt;
 }
+
+.delete{
+  color : #e64340;
+  font-size: 12pt;
+  padding-left:10px; 
+}
