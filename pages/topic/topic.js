@@ -28,7 +28,21 @@ Page({
        utils.serviceUtil.get(conf.service.getTopicById,{
             topicId : that.data.topicId,
        },function(res){
-            that.setData({topic : res.data.success[0]}); 
+            if(res.data.success && res.data.success.length == 1){
+               that.setData({topic : res.data.success[0]}); 
+            }
+            else{
+               wx.showModal({
+                   title: '提示',
+                   content: '本话题已移除',
+                   showCancel : false,
+                   success: function(res) {
+                      if (res.confirm) {
+                         wx.navigateBack({delta: 1});
+                      }
+                   }       
+               });
+            }
        },function(err){
             console.log(err);
        });
@@ -56,7 +70,8 @@ Page({
               if(res.data["401"]){
                  wx.showModal({
                    title: '无权限',
-                   content: res.data["401"],       
+                   content: res.data["401"],
+                   showCancel : false       
                  });
               }
               else{

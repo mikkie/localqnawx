@@ -43,7 +43,8 @@ Page({
               if(res.data["401"]){
                  wx.showModal({
                    title: '无权限',
-                   content: res.data["401"],       
+                   content: res.data["401"],
+                   showCancel : false       
                  });
               }
               else{
