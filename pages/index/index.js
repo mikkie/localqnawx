@@ -80,11 +80,11 @@ Page({
          }
        });
   },
-  onShow: function () {
+  onLoad : function () {
       var that = this;
       that.setData({currentLoc : ''});
       app.login(function(){
-         that.loadHomePageCommunities(that);
+           that.loadHomePageCommunities(that);  
       });
   }
 })
