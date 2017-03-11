@@ -60,10 +60,12 @@ Page({
               distance : wx.getStorageSync('settings').distance,
               sessionId : wx.getStorageSync('sessionId')
            },function(res){
-              var array = [];
-              util.arrayUtil.mergeArray(array,res.data.success.near);
-              util.arrayUtil.mergeArray(array,res.data.success.recommend);
-              that.setData({communities : array});
+              if(res.data.success){
+                var array = [];
+                util.arrayUtil.mergeArray(array,res.data.success.near);
+                util.arrayUtil.mergeArray(array,res.data.success.recommend);
+                that.setData({communities : array}); 
+              }
            },function(err){
                console.log(err);
            });
