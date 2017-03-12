@@ -11,6 +11,7 @@
         <image class="userAvatar" mode="aspectFit" src="{{topic.owner.avatar}}"></image>
         <text class="uName">{{topic.owner.name}}</text>
         <text class="cDate">{{topic.createDate}}</text>
+        <text class="cDate">EXP:{{topic.expireLength}}{{topic.expireUnit}}</text>
         <block wx:if="{{topic.star}}"><image class="icon" src="../../images/star-yellow.png" bindtap="handleStar" data-isAdd="false" data-topicId="{{topic._id}}" data-index="{{index}}"></image></block>
          <block wx:else><image class="icon" src="../../images/star-grey.png" bindtap="handleStar" data-isAdd="true" data-topicId="{{topic._id}}" data-index="{{index}}"></image></block>
       </view>
