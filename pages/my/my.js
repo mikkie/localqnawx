@@ -42,6 +42,10 @@ Page({
            that.loadData(that);
         });
     },
+    onPullDownRefresh : function(){
+      this.loadData(this);
+      wx.stopPullDownRefresh(); 
+    },
     loadData : function(that){
        switch(that.data.index){
           case "0" : that.loadMyTopic(that); break;

@@ -23,9 +23,8 @@ Page({
                console.log(err);
        });
     },
-    onShow : function(){
-       var that = this; 
-       utils.serviceUtil.get(conf.service.getTopicById,{
+    loadData : function(that){
+        utils.serviceUtil.get(conf.service.getTopicById,{
             topicId : that.data.topicId,
             sessionId : wx.getStorageSync('sessionId')
        },function(res){
@@ -37,8 +36,8 @@ Page({
                    title: '提示',
                    content: '本话题已移除',
                    showCancel : false,
-                   success: function(res) {
-                      if (res.confirm) {
+                   success: function(result) {
+                      if (result.confirm) {
                          wx.navigateBack({delta: 1});
                       }
                    }       
@@ -47,7 +46,14 @@ Page({
        },function(err){
             console.log(err);
        });
-       this.loadComment();
+       that.loadComment();
+    },
+    onShow : function(){
+       this.loadData(this); 
+    },
+    onPullDownRefresh : function(){
+      this.loadData(this); 
+      wx.stopPullDownRefresh(); 
     },
     toggleAnonymous : function(e){
        this.setData({anonymous: e.detail.value.length == 1});

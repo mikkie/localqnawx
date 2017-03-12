@@ -61,5 +61,14 @@ App({
   globalData : {
      init : false,
      userInfo : null
-  }
+  },
+  showLoading:function(){
+        wx.showToast({
+         title: '加载中',
+         icon: 'loading'
+        });
+   },
+   cancelLoading:function(){
+        wx.hideToast();
+   }
 })

@@ -80,6 +80,10 @@ Page({
          }
        });
   },
+  onPullDownRefresh : function(){
+      this.loadHomePageCommunities(this);
+      wx.stopPullDownRefresh(); 
+  },
   onLoad : function () {
       var that = this;
       that.setData({currentLoc : ''});
