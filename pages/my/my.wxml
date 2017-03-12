@@ -12,7 +12,7 @@
         <image class="userAvatar" mode="aspectFit" src="{{topic.owner.avatar}}"></image>
         <text class="uName">{{topic.owner.name}}</text>
         <text class="cDate">{{topic.createDate}}</text>
-        <text class="cDate">EXP:{{topic.expireLength}}{{topic.expireUnit}}</text>
+        <text class="cDate mini-font">EXP:{{topic.expireLength}}{{topic.expireUnit}}</text>
       </view>
       <navigator url="../topic/topic?topicId={{topic._id}}" hover-class="none">
       <view class="ccontent">
