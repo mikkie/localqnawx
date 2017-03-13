@@ -138,6 +138,13 @@ Page({
                console.log(err);
            });
     },
+    atUser : function(e){
+       var atUsername = e.target.dataset.username;
+       if(new RegExp(atUsername).test(this.data.content)){
+          return; 
+       }
+       this.setData({content : this.data.content + ' ' + atUsername});
+    },
     deleteTopic : function(e){
        wx.showModal({
           title: '删除确认',

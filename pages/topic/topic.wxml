@@ -3,8 +3,8 @@
   <view class="header">
    <view class="community" style="border-bottom:none;padding:0;">
     <view class="chead" style="justify-content:flex-start;">
-        <image class="userAvatar" mode="aspectFit" src="{{topic.owner.avatar}}"></image>
-        <text class="uName">{{topic.owner.name}}</text>
+        <image class="userAvatar" mode="aspectFit" src="{{topic.owner.avatar}}" bindtap="atUser" data-username="@{{topic.owner.name}}"></image>
+        <text class="uName" bindtap="atUser" data-username="@{{topic.owner.name}}">{{topic.owner.name}}</text>
         <text class="cDate">{{topic.createDate}}</text>
         <text class="delete" bindtap="deleteTopic" data-topicid="{{topic._id}}" hidden="{{!topic.ownByCurrentUser}}">删除</text>
       </view>
@@ -17,8 +17,8 @@
     <view wx:for="{{comments}}" wx:key="_id" wx:for-item="comment">
     <view class="community">
       <view class="chead" style="justify-content:flex-start;">
-        <image class="userAvatar" mode="aspectFit" src="{{comment.owner.avatar}}"></image>
-        <text class="uName">{{comment.owner.name}}</text>
+        <image class="userAvatar" mode="aspectFit" src="{{comment.owner.avatar}}" bindtap="atUser" data-username="@{{comment.owner.name}}"></image>
+        <text class="uName" bindtap="atUser" data-username="@{{comment.owner.name}}">{{comment.owner.name}}</text>
         <text class="cDate">{{comment.createDate}}</text>
         <text class="delete" bindtap="deleteComment" data-commentid="{{comment._id}}" hidden="{{!comment.ownByCurrentUser}}" data-index="{{index}}">删除</text>
       </view>
