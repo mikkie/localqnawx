@@ -11,7 +11,7 @@
       <view class="chead" style="justify-content:flex-start;">
         <image class="userAvatar" mode="aspectFit" src="{{topic.owner.avatar}}"></image>
         <text class="uName">{{topic.owner.name}}</text>
-        <view class="newMsg" hidden="{{topic.newComment != 0}}"></view>
+        <view class="newMsg" hidden="{{topic.newComment == 0}}"></view>
         <text class="cDate">{{topic.createDate}}</text>
         <text class="cDate mini-font">EXP:{{topic.expireLength}}{{topic.expireUnit}}</text>
       </view>
