@@ -1,12 +1,13 @@
 <!--my.wxml-->
 <view class="container">
   <view class="header">
-    <text class="{{tab0}}" data-index="0" bindtap="changeTab">我的话题</text>
-    <text class="{{tab1}}" data-index="1" bindtap="changeTab">参与的话题</text>
-    <text class="{{tab2}}" data-index="2" bindtap="changeTab">@我的话题</text>
+    <view><text class="{{tab0}}" data-index="0" bindtap="changeTab">我的话题</text><view class="newMsg" style="float:right;" hidden="{{!newComment}}"></view></view>
+    <view><text class="{{tab1}}" data-index="1" bindtap="changeTab">参与的话题</text></view>
+    <view><text class="{{tab2}}" data-index="2" bindtap="changeTab">@我的话题</text><view class="newMsg" style="float:right;" hidden="{{!atMeTopics || atMeTopics.length == 0}}"></view></view>
   </view>
-  <view class="content">
-    <view wx:for="{{topics}}" wx:key="_id" wx:for-item="topic">
+  <!-- my topics -->
+  <view class="content" hidden="{{index == 1 || index == 2}}">
+    <view wx:for="{{myTopics}}" wx:key="_id" wx:for-item="topic">
     <view class="community">
       <view class="chead" style="justify-content:flex-start;">
         <image class="userAvatar" mode="aspectFit" src="{{topic.owner.avatar}}"></image>
@@ -22,7 +23,53 @@
       </navigator>
     </view>
     </view>
-    <view class="community" hidden="{{topics.length > 0}}">
+    <view class="community" hidden="{{myTopics && myTopics.length > 0}}">
+      <view class="chead" style="justify-content:flex-start;">
+        <text style="font-size:11pt;">暂无话题</text>
+      </view>
+    </view>
+  </view>
+  <!-- join topics -->
+  <view class="content" hidden="{{index == 0 || index == 2}}">
+    <view wx:for="{{joinTopics}}" wx:key="_id" wx:for-item="topic">
+    <view class="community">
+      <view class="chead" style="justify-content:flex-start;">
+        <image class="userAvatar" mode="aspectFit" src="{{topic.owner.avatar}}"></image>
+        <text class="uName">{{topic.owner.name}}</text>
+        <text class="cDate">{{topic.createDate}}</text>
+        <text class="cDate mini-font">EXP:{{topic.expireLength}}{{topic.expireUnit}}</text>
+      </view>
+      <navigator url="../topic/topic?topicId={{topic._id}}" hover-class="none">
+      <view class="ccontent">
+        <text>{{topic.content}}</text>
+      </view>
+      </navigator>
+    </view>
+    </view>
+    <view class="community" hidden="{{joinTopics && joinTopics.length > 0}}">
+      <view class="chead" style="justify-content:flex-start;">
+        <text style="font-size:11pt;">暂无话题</text>
+      </view>
+    </view>
+  </view>
+  <!-- @me topics -->
+  <view class="content" hidden="{{index == 0 || index == 1}}">
+    <view wx:for="{{atMeTopics}}" wx:key="_id" wx:for-item="topic">
+    <view class="community">
+      <view class="chead" style="justify-content:flex-start;">
+        <image class="userAvatar" mode="aspectFit" src="{{topic.owner.avatar}}"></image>
+        <text class="uName">{{topic.owner.name}}</text>
+        <text class="cDate">{{topic.createDate}}</text>
+        <text class="cDate mini-font">EXP:{{topic.expireLength}}{{topic.expireUnit}}</text>
+      </view>
+      <navigator url="../topic/topic?topicId={{topic._id}}" hover-class="none">
+      <view class="ccontent">
+        <text>{{topic.content}}</text>
+      </view>
+      </navigator>
+    </view>
+    </view>
+    <view class="community" hidden="{{atMeTopics && atMeTopics.length > 0}}">
       <view class="chead" style="justify-content:flex-start;">
         <text style="font-size:11pt;">暂无话题</text>
       </view>

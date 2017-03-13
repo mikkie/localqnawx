@@ -7,13 +7,26 @@ Page({
         tab1 : "tab lowlight",
         tab2 : "tab lowlight",
         index : "0",
-        topics : []
+        newComment : false,
+        myTopics : [],
+        joinTopics : [],
+        atMeTopics : []
     },
     loadMyTopic : function(that){
        util.serviceUtil.get(conf.service.findTopicsByOwner,{
            sessionId : wx.getStorageSync('sessionId')
        },function(res){
-            that.setData({topics : res.data.success});
+            var find = false;
+            that.setData({myTopics : res.data.success});
+            if(res.data.success && res.data.success.length > 0){
+               for(var i = 0;i < res.data.success.length; i++){
+                   if(res.data.success[i].newComment && res.data.success[i].newComment > 0){
+                       find = true;
+                       break;
+                   }
+               }
+            }
+            that.setData({newComment : find});
        },function(err){
             console.log(err);
        }); 
@@ -22,7 +35,7 @@ Page({
        util.serviceUtil.get(conf.service.findUserRepliesTopics,{
            sessionId : wx.getStorageSync('sessionId')
        },function(res){
-            that.setData({topics : res.data.success});
+            that.setData({joinTopics : res.data.success});
        },function(err){
             console.log(err);
        }); 
@@ -31,7 +44,7 @@ Page({
        util.serviceUtil.get(conf.service.findAtmeTopics,{
            sessionId : wx.getStorageSync('sessionId')
        },function(res){
-            that.setData({topics : res.data.success});
+            that.setData({atMeTopics : res.data.success});
        },function(err){
             console.log(err);
        }); 
@@ -39,12 +52,17 @@ Page({
     onShow : function(){
         var that = this;
         app.login(function(){
-           that.loadData(that);
+           that.loadAllData(that);
         });
     },
     onPullDownRefresh : function(){
-      this.loadData(this);
+      this.loadAllData(this);
       wx.stopPullDownRefresh(); 
+    },
+    loadAllData : function(that){
+       that.loadMyTopic(that); 
+       that.loadMyReplies(that); 
+       that.loadAtMe(that); 
     },
     loadData : function(that){
        switch(that.data.index){
