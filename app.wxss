@@ -188,10 +188,10 @@
 }
 
 .newMsg{
-  color : red,
-  width: 6px; 
-  height: 6px;
-  border-radius: 3px;
+  background-color : red;
+  width: 8px; 
+  height: 8px;
+  border-radius: 4px;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
