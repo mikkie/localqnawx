@@ -12,6 +12,15 @@ Page({
     onLoad : function(options){
         this.setData({topicId : options.topicId});
     },
+    tagReaded : function(that){
+       utils.serviceUtil.post(conf.service.tagTopicReaded,{
+              topicId : that.data.topicId,
+              sessionId : wx.getStorageSync('sessionId')
+       },function(res){
+       },function(err){
+              console.log(err);
+       });
+    },
     loadComment : function(){
        var that = this; 
        utils.serviceUtil.get(conf.service.findCommentsByTopicId,{
@@ -19,6 +28,9 @@ Page({
               sessionId : wx.getStorageSync('sessionId')
        },function(res){
               that.setData({comments : res.data.success});
+              if(res.data.success && res.data.success.length > 0){
+                 that.tagReaded(that);
+              }
        },function(err){
                console.log(err);
        });

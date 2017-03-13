@@ -10,12 +10,13 @@
     <view class="community">
       <view class="chead" style="justify-content:flex-start;">
         <image class="userAvatar" mode="aspectFit" src="{{topic.owner.avatar}}"></image>
+        <view class="newMsg" hidden="{{topic.newComment == 0}}"></view>
         <text class="uName">{{topic.owner.name}}</text>
         <text class="cDate">{{topic.createDate}}</text>
       </view>
       <navigator url="../topic/topic?topicId={{topic._id}}" hover-class="none">
       <view class="ccontent">
-        <navigator url="../topic/topic?topicId={{topic._id}}" hover-class="none"><text>{{topic.content}}</text></navigator>
+        <text>{{topic.content}}</text>
       </view>
       </navigator>
     </view>

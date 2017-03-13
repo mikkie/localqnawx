@@ -21,7 +21,8 @@ var conf = {
       updateSettings : '/user/updateSettings',
       getGlobalSettings : '/globalSetting/getGlobalSettings',
       deleteTopic : '/topic/deleteTopic',
-      deleteComment : '/comment/deleteComment'
+      deleteComment : '/comment/deleteComment',
+      tagTopicReaded : '/topic/tagTopicReaded'
    }
 };
 
