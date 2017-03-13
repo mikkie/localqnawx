@@ -31,6 +31,8 @@ var stringUtil = {
 
 var serviceUtil = {
   post : function(url,data,success,fail){
+     var app = getApp();
+     app.showLoading();
      wx.request({
               url: conf.host + url, 
               data: data,
@@ -40,9 +42,11 @@ var serviceUtil = {
               },
               dataType : 'json',
               success: function(res) {
+                 app.cancelLoading();
                  success(res);
               },
               fail : function(err){
+                 app.cancelLoading(); 
                  console.log(err);
                  if(typeof fail === 'function'){
                      fail(err);
@@ -51,6 +55,8 @@ var serviceUtil = {
      });  
   },
   "get" : function(url,data,success,fail){
+     var app = getApp();
+     app.showLoading();
      wx.request({
               url: conf.host + url, 
               data: data,
@@ -60,9 +66,11 @@ var serviceUtil = {
               },
               dataType : 'json',
               success: function(res) {
+                 app.cancelLoading();
                  success(res);
               },
               fail : function(err){
+                 app.cancelLoading();
                  console.log(err);
                  if(typeof fail === 'function'){
                      fail(err);

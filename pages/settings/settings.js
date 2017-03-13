@@ -15,6 +15,12 @@ Page({
            that.loadGlobalSettings(that);
         });
     },
+    onPullDownRefresh : function(){
+      this.setData({userInfo : app.globalData.userInfo});
+      this.setData({settings : wx.getStorageSync('settings')}); 
+      this.loadGlobalSettings(this);
+      wx.stopPullDownRefresh(); 
+    },
     loadGlobalSettings : function(that){
         util.serviceUtil.get(conf.service.getGlobalSettings,{},function(res){
            that.setData({'globalSettings':res.data.success});

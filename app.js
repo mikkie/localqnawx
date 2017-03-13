@@ -9,6 +9,9 @@ App({
        }
        return;
     }
+    this.doGetUserInfo(callback); 
+  },
+  doGetUserInfo : function(callback){
     var that = this;
     wx.getUserInfo({
       success: function(res) {
@@ -17,7 +20,7 @@ App({
            callback(res.userInfo);
         }
       }
-    }) 
+    });
   },
   doLogin : function(callback,that){
      wx.login({
@@ -26,7 +29,6 @@ App({
            wx.setStorageSync('sessionId', res.data.success.sessionId);
            wx.setStorageSync('settings', res.data.success.settings);
            console.log('sessionId=' + res.data.success);
-           that.getUserInfo();
            if(typeof callback == 'function'){
               callback();
            }
@@ -37,6 +39,11 @@ App({
    });  
   },
   login:function(callback){
+    if(!this.globalData.init){
+        this.doLogin(callback,that);
+        this.globalData.init = true;
+        return;
+    }
     var that = this;
     wx.checkSession({
       success: function(){
@@ -48,9 +55,20 @@ App({
     });
   },
   onShow : function(){
-      this.doLogin(null,this);
+       this.globalData.init = false;
+       this.doGetUserInfo(null);
   },
   globalData : {
+     init : false,
      userInfo : null
-  }
+  },
+  showLoading:function(){
+        wx.showToast({
+         title: '加载中',
+         icon: 'loading'
+        });
+   },
+   cancelLoading:function(){
+        wx.hideToast();
+   }
 })

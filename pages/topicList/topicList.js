@@ -25,6 +25,10 @@ Page({
            that.loadTopicsByCommunityId(that);
        });
     },
+    onPullDownRefresh : function(){
+      this.loadTopicsByCommunityId(this);
+      wx.stopPullDownRefresh(); 
+    },
     onLoad : function(options){
         this.setData({currentLoc : options.curLocl,communityId : options.communityId});
     },

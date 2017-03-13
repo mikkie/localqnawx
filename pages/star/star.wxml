@@ -20,6 +20,7 @@
         <image class="userAvatar" mode="aspectFit" src="{{topic.owner.avatar}}"></image>
         <text class="uName">{{topic.owner.name}}</text>
         <text class="cDate">{{topic.createDate}}</text>
+        <text class="cDate mini-font">EXP:{{topic.expireLength}}{{topic.expireUnit}}</text>
         <image class="icon" src="../../images/star-yellow.png" bindtap="handleTopicStar" data-isAdd="false" data-topicId="{{topic._id}}" data-index="{{index}}"></image>
       </view>
       <navigator url="../topic/topic?topicId={{topic._id}}" hover-class="none">

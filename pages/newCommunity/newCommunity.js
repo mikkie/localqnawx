@@ -10,8 +10,9 @@ Page({
       var that = this;   
       wx.chooseLocation({
           success : function(obj){
-             if(obj.name){
-                that.setData({currentLoc : obj.name,communityName : obj.name,pos : [parseFloat(obj.longitude),parseFloat(obj.latitude)]});
+             var name = obj.name || obj.address;
+             if(name){
+                that.setData({currentLoc : name,communityName : name,pos : [parseFloat(obj.longitude),parseFloat(obj.latitude)]});
              } 
           }
       });
@@ -39,9 +40,7 @@ Page({
                  });
               }
               else{
-                wx.switchTab({
-                   url: '../star/star'
-                });
+                wx.redirectTo({url: '../topicList/topicList?communityId=' + res.data.success._id + '&curLocl=' + res.data.success.name});
               }
            },function(err){
                console.log(err);

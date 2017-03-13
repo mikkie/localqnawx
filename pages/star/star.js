@@ -70,6 +70,10 @@ Page({
            that.loadData(that);
         });
     },
+    onPullDownRefresh : function(){
+      this.loadData(this);
+      wx.stopPullDownRefresh(); 
+    },
     changeTab : function(e){
        var index = e.target.dataset.index; 
        for(var i = 0; i < 2; i++){    

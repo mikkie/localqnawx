@@ -13,6 +13,7 @@
         <view class="newMsg" hidden="{{topic.newComment == 0}}"></view>
         <text class="uName">{{topic.owner.name}}</text>
         <text class="cDate">{{topic.createDate}}</text>
+        <text class="cDate mini-font">EXP:{{topic.expireLength}}{{topic.expireUnit}}</text>
       </view>
       <navigator url="../topic/topic?topicId={{topic._id}}" hover-class="none">
       <view class="ccontent">

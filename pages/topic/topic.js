@@ -35,9 +35,8 @@ Page({
                console.log(err);
        });
     },
-    onShow : function(){
-       var that = this; 
-       utils.serviceUtil.get(conf.service.getTopicById,{
+    loadData : function(that){
+        utils.serviceUtil.get(conf.service.getTopicById,{
             topicId : that.data.topicId,
             sessionId : wx.getStorageSync('sessionId')
        },function(res){
@@ -49,8 +48,8 @@ Page({
                    title: '提示',
                    content: '本话题已移除',
                    showCancel : false,
-                   success: function(res) {
-                      if (res.confirm) {
+                   success: function(result) {
+                      if (result.confirm) {
                          wx.navigateBack({delta: 1});
                       }
                    }       
@@ -59,7 +58,14 @@ Page({
        },function(err){
             console.log(err);
        });
-       this.loadComment();
+       that.loadComment();
+    },
+    onShow : function(){
+       this.loadData(this); 
+    },
+    onPullDownRefresh : function(){
+      this.loadData(this); 
+      wx.stopPullDownRefresh(); 
     },
     toggleAnonymous : function(e){
        this.setData({anonymous: e.detail.value.length == 1});
@@ -151,18 +157,21 @@ Page({
           }       
        });
     },
-    deleteComment : function(){
+    deleteComment : function(e){
+      var that = this;   
       wx.showModal({
           title: '删除确认',
           content: '确认删除该评论?',
           success: function(res) {
               if (res.confirm) {
                   var commentid = e.target.dataset.commentid;
+                  var index = e.target.dataset.index;
                   utils.serviceUtil.post(conf.service.deleteComment,{
                      sessionId : wx.getStorageSync('sessionId'),
                      commentId : commentid
                   },function(res){
-                     wx.navigateBack({delta: 1});
+                     that.data.comments.splice(index,1);
+                     that.setData({comments : that.data.comments});
                   },function(err){
                      console.log(err);
                   });
