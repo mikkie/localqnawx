@@ -12,7 +12,10 @@ Page({
           success : function(obj){
              var name = obj.name || obj.address;
              if(name){
-                that.setData({currentLoc : name,communityName : name,pos : [parseFloat(obj.longitude),parseFloat(obj.latitude)]});
+                that.setData({currentLoc : name,pos : [parseFloat(obj.longitude),parseFloat(obj.latitude)]});
+                if(!that.data.communityName){
+                   that.setData({communityName : name});
+                }
              } 
           }
       });
