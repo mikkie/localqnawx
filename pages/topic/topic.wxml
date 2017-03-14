@@ -14,6 +14,7 @@
     </view>  
   </view>
   <view class="content">
+    <scroll-view scroll-y="true" style="height:350px;padding:5px;">
     <view wx:for="{{comments}}" wx:key="_id" wx:for-item="comment">
     <view class="community">
       <view class="chead" style="justify-content:flex-start;">
@@ -49,13 +50,13 @@
       </view>
     </view>
     </view>
+     </scroll-view>
   </view>  
   <view class="footer">
     <form bindsubmit="submitComment">
-    <view class="fcontainer">
-      <textarea class="qInput" placeholder="输入你的回答，150字以内。" maxlength="150" fixed="true" placeholder-style="font-size:11pt;" auto-height="true" bindblur="confirmContent" value="{{content}}"/>匿<checkbox-group bindchange="toggleAnonymous"><checkbox /></checkbox-group>
-      <button class="okBtn" type="primary" size="mini" formType="submit">提交</button>
-    </view>
+     <view class="fcontainer">
+      <textarea class="qInput" placeholder="输入你的回答，150字以内。" maxlength="150" fixed="true" placeholder-style="font-size:11pt;" bindblur="confirmContent" value="{{content}}"/>匿<checkbox-group bindchange="toggleAnonymous"><checkbox /></checkbox-group><button class="okBtn" type="primary" size="mini" formType="submit">提交</button>
+     </view>
     </form>
   </view>
 </view>

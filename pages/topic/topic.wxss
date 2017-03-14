@@ -28,7 +28,8 @@
 }
 
 .qInput{
-  flex-grow: 3; 
+  height:60px;
+  flex-grow: 3;
 }
 
 .okBtn{
