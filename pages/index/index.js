@@ -77,7 +77,14 @@ Page({
              var lat = res.latitude;
              var lng = res.longitude;
              that.findCommunitiesByLocAndRecommend([lng,lat],that);
-         }
+          },
+          fail : function(){
+              wx.showModal({
+                   title: '提示',
+                   content: '无法获取当前位置，请确保微信定位功能开启。',
+                   showCancel : false
+              });
+          }
        });
   },
   onPullDownRefresh : function(){
