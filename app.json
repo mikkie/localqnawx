@@ -38,7 +38,7 @@
       "iconPath" : "images/setting-grey.png",
       "selectedIconPath" : "images/setting.png"
     }],
-    "backgroundColor" : "white",
+    "backgroundColor" : "#fff",
     "borderStyle" : "white",
     "selectedColor" : "#1F8A70",
     "position" : "bottom"
