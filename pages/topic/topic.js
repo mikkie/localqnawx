@@ -77,16 +77,17 @@ Page({
     toggleAnonymous : function(e){
        this.setData({anonymous: e.detail.value.length == 1});
     },
-    submitComment : function(){
+    submitComment : function(e){
+        var content = e.detail.value.content;
         var that = this;
-        if(utils.stringUtil.isEmptyOrNull(this.data.content)){
+        if(utils.stringUtil.isEmptyOrNull(content)){
            return;
         }
         app.getUserInfo(function(userInfo){
           if(userInfo){
              utils.serviceUtil.post(conf.service.createNewComment,{
               userInfo : userInfo,
-              content : that.data.content,
+              content : content,
               sessionId : wx.getStorageSync('sessionId'),
               topicId : that.data.topicId,
               anonymous : that.data.anonymous,

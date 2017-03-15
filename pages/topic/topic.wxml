@@ -55,7 +55,7 @@
   <view class="footer">
     <form bindsubmit="submitComment">
      <view class="fcontainer">
-      <textarea class="qInput" placeholder="输入你的回答，150字以内。" maxlength="150" fixed="true" placeholder-style="font-size:11pt;" bindblur="confirmContent" value="{{content}}"/>匿<checkbox-group bindchange="toggleAnonymous"><checkbox /></checkbox-group><button class="okBtn" type="primary" size="mini" formType="submit">提交</button>
+      <textarea class="qInput" placeholder="输入你的回答，150字以内。" maxlength="150" fixed="true" name="content" placeholder-style="font-size:11pt;" bindblur="confirmContent" value="{{content}}"/>匿<checkbox-group bindchange="toggleAnonymous"><checkbox /></checkbox-group><button class="okBtn" type="primary" size="mini" formType="submit">提交</button>
      </view>
     </form>
   </view>
