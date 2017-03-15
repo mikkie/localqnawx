@@ -9,6 +9,12 @@ Page({
       comments : [],
       anonymous : false
     },
+    onShareAppMessage: function () {
+      return {
+        title: this.data.content + '-邻答',
+        path: '/page/topic/topic'
+      };
+    },
     onLoad : function(options){
         this.setData({topicId : options.topicId});
     },

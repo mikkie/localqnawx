@@ -8,6 +8,12 @@ Page({
     currentLoc : '',
     communities : []
   },
+  onShareAppMessage: function () {
+    return {
+      title: '连接社区，分享智慧-邻答',
+      path: '/page/index/index'
+    };
+  },
   openMap : function(event){
       var that = this;   
       wx.chooseLocation({

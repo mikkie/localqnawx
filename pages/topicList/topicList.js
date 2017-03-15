@@ -7,6 +7,12 @@ Page({
        communityId : '',
        topics : []
     },
+    onShareAppMessage: function () {
+      return {
+        title: this.data.currentLoc + '-邻答',
+        path: '/page/topicList/topicList'
+      };
+    },
     loadTopicsByCommunityId : function(that){
         utils.serviceUtil.get(conf.service.findTopicsByCommunityId,{communityId : this.data.communityId,sessionId : wx.getStorageSync('sessionId')},function(res){
     if(res.data && res.data.success){
