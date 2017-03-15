@@ -94,6 +94,7 @@ Page({
               to : []
            },function(res){
               that.setData({content : ''}); 
+              console.log('clear content a');
               if(res.data["401"]){
                  wx.showModal({
                    title: '无权限',
@@ -105,14 +106,12 @@ Page({
                  that.loadComment();   
               }
            },function(err){
+               console.log('clear content b');
                that.setData({content : ''}); 
                console.log(err);
            });
           }
         });
-    },
-    confirmContent : function(e){
-        this.data.content = e.detail.value;
     },
     upAndDownComment : function(e){
         var index = e.target.dataset.index;
