@@ -105,6 +105,7 @@ Page({
                  that.loadComment();   
               }
            },function(err){
+               that.setData({content : ''}); 
                console.log(err);
            });
           }
