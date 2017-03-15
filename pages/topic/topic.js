@@ -10,9 +10,10 @@ Page({
       anonymous : false
     },
     onShareAppMessage: function () {
+      var that = this; 
       return {
-        title: this.data.content + '-邻答',
-        path: '/page/topic/topic'
+        title: that.data.topic.content + '-邻答',
+        path: '/pages/topic/topic?topicId=' + that.data.topicId
       };
     },
     onLoad : function(options){

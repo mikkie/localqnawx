@@ -8,9 +8,10 @@ Page({
        topics : []
     },
     onShareAppMessage: function () {
+      var that = this;  
       return {
-        title: this.data.currentLoc + '-邻答',
-        path: '/page/topicList/topicList'
+        title: that.data.currentLoc + '-邻答',
+        path: '/pages/topicList/topicList?communityId='+ that.data.communityId +'&curLocl=' + that.data.currentLoc
       };
     },
     loadTopicsByCommunityId : function(that){
