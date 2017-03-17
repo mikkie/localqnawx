@@ -145,6 +145,9 @@ Page({
                console.log(err);
            });
     },
+    bindinput : function(e){
+       this.setData({content : e.detail.value}); 
+    },
     atUser : function(e){
        var atUsername = e.target.dataset.username;
        if(new RegExp(atUsername).test(this.data.content)){
