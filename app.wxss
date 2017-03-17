@@ -6,6 +6,7 @@
   align-items: stretch;
   justify-content: space-between;
   box-sizing: border-box;
+  color: grey;
 } 
 
 .header{
@@ -32,10 +33,10 @@
 
 .community{
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
+  align-items: space-between;
+  justify-content: center;
   padding: 5px;
   flex-grow: 2;
   border-bottom: 1px solid lightgrey;
@@ -113,6 +114,16 @@
   width: 32px; 
   height: 32px;
   border-radius: 16px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatarC{
+  font-size: 11pt;
+  color: #fff;
 }
 
 .cname{
@@ -133,6 +144,10 @@
 .small{
   width:16px;
   height:16px;
+}
+
+.mini-font{
+  font-size : 10pt;
 }
 
 .section{
@@ -159,4 +174,27 @@
   justify-content: space-between;
   font-size: 11pt;
   border-bottom: 1px solid lightgrey;
+}
+
+
+.common-font{
+  font-size : 11pt;
+}
+
+.delete{
+  color : #e64340;
+  font-size: 10pt;
+  padding-left:10px; 
+}
+
+.newMsg{
+  background-color : red;
+  width: 8px; 
+  height: 8px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
 }

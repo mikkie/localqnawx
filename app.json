@@ -13,7 +13,8 @@
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#1F8A70",
     "navigationBarTitleText": "邻答",
-    "navigationBarTextStyle":"white"
+    "navigationBarTextStyle":"white",
+    "enablePullDownRefresh" : true
   },
   "tabBar": {
     "list": [{
@@ -37,7 +38,7 @@
       "iconPath" : "images/setting-grey.png",
       "selectedIconPath" : "images/setting.png"
     }],
-    "backgroundColor" : "white",
+    "backgroundColor" : "#fff",
     "borderStyle" : "white",
     "selectedColor" : "#1F8A70",
     "position" : "bottom"

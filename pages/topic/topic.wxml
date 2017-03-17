@@ -1,38 +1,62 @@
 <!--topic.wxml-->
 <view class="container">
   <view class="header">
-   <view class="community" style="border-bottom:none;">
+   <view class="community" style="border-bottom:none;padding:0;">
     <view class="chead" style="justify-content:flex-start;">
-        <image class="userAvatar" mode="aspectFit" src="http://www.yamixed.com/static/images/no_image.jpg"></image>
-        <text class="uName">Aqua</text>
-        <text class="cDate">01-30 12:34</text>
-        <image class="icon" src="../../images/star-grey.png"></image>
+        <image class="userAvatar" mode="aspectFit" src="{{topic.owner.avatar}}" bindtap="atUser" data-username="@{{topic.owner.name}}"></image>
+        <text class="uName" bindtap="atUser" data-username="@{{topic.owner.name}}">{{topic.owner.name}}</text>
+        <text class="cDate">{{topic.createDate}}</text>
+        <text class="delete" bindtap="deleteTopic" data-topicid="{{topic._id}}" hidden="{{!topic.ownByCurrentUser}}">删除</text>
       </view>
-      <view class="ccontent" style="padding:0;">
-        <text>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</text>
+      <view class="ccontent" style="padding-top:5pt;">
+        <text>{{topic.content}}</text>
       </view>
     </view>  
   </view>
   <view class="content">
+    <scroll-view scroll-y="true" style="height:350px;padding:5px;">
+    <view wx:for="{{comments}}" wx:key="_id" wx:for-item="comment">
     <view class="community">
       <view class="chead" style="justify-content:flex-start;">
-        <image class="userAvatar" mode="aspectFit" src="http://www.yamixed.com/static/images/no_image.jpg"></image>
-        <text class="uName">Aqua</text>
-        <text class="cDate">01-30 12:34</text>
+        <image class="userAvatar" mode="aspectFit" src="{{comment.owner.avatar}}" bindtap="atUser" data-username="@{{comment.owner.name}}"></image>
+        <text class="uName" bindtap="atUser" data-username="@{{comment.owner.name}}">{{comment.owner.name}}</text>
+        <text class="cDate">{{comment.createDate}}</text>
+        <text class="delete" bindtap="deleteComment" data-commentid="{{comment._id}}" hidden="{{!comment.ownByCurrentUser}}" data-index="{{index}}">删除</text>
       </view>
       <view class="ccontent">
-        <text>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</text>
+        <text>{{comment.content}}</text>
       </view>
       <view class="cfooter">
-        <image class="icon small" src="../../images/thumbs-up.png"></image>
-        <image class="icon small" src="../../images/thumbs-down.png" style="margin-left:15px;float:right;"></image>
+        <block wx:if="{{comment.thumbup}}">
+        <view>
+        <image class="icon small" src="../../images/thumbs-up.png" bindtap="upAndDownComment" data-isup="true" data-index="{{index}}" data-commentid="{{comment._id}}"></image><text class="mini-font">{{comment.up}}</text>
+        </view>
+        </block>
+        <block wx:else>
+        <view>
+        <image class="icon small" src="../../images/thumbs-up-grey.png" bindtap="upAndDownComment" data-isup="true" data-index="{{index}}" data-commentid="{{comment._id}}"></image><text class="mini-font">{{comment.up}}</text>
+        </view>
+        </block>
+        <block wx:if="{{comment.thumbdown}}">
+        <view style="margin-left:15px;float:right;">
+        <image class="icon small" src="../../images/thumbs-down.png"  bindtap="upAndDownComment" data-isup="false" data-index="{{index}}" data-commentid="{{comment._id}}"></image><text class="mini-font">{{comment.down}}</text>
+        </view>
+        </block>
+        <block wx:else>
+        <view style="margin-left:15px;float:right;">
+        <image class="icon small" src="../../images/thumbs-down-grey.png"  bindtap="upAndDownComment" data-isup="false" data-index="{{index}}" data-commentid="{{comment._id}}"></image><text class="mini-font">{{comment.down}}</text>
+        </view>
+        </block>
       </view>
     </view>
+    </view>
+     </scroll-view>
   </view>  
   <view class="footer">
-    <view class="fcontainer">
-      <textarea class="qInput" placeholder="输入你的回答" maxlength="150" fixed="true" placeholder-style="font-size:11pt;" auto-height="true" auto-focus/>匿<checkbox value="1" checked="false"/>
-      <button class="okBtn" type="primary" size="mini" bindtap="primary">提交</button>
-    </view>
+    <form bindsubmit="submitComment">
+     <view class="fcontainer">
+      <textarea class="qInput" placeholder="输入你的回答，150字以内。" maxlength="150" fixed="true" name="content" placeholder-style="font-size:11pt;" value="{{content}}"/>匿<checkbox-group bindchange="toggleAnonymous"><checkbox /></checkbox-group><button class="okBtn" type="primary" size="mini" formType="submit">提交</button>
+     </view>
+    </form>
   </view>
 </view>

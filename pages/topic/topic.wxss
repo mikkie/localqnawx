@@ -3,12 +3,13 @@
 }
 
 .header{
-    background-color: #FFE11A;
+    background-color: #F2F2F2;
 }
 
 .footer{
     border-top: 1px solid lightgray;
-    background-color: #BEDB39;
+    background-color: #F2F2F2;
+    position: fixed;
     padding: 5px;
     bottom: 0;
     left : 0;
@@ -27,7 +28,8 @@
 }
 
 .qInput{
-  flex-grow: 3; 
+  height:60px;
+  flex-grow: 3;
 }
 
 .okBtn{

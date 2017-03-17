@@ -2,12 +2,12 @@
 <view class="container">
   <view class="header" style="background-color:lightgrey;">
     <image class="icon" src="../../images/map.png"></image>
-    <text class="currentLocation">厦门市软件园2期</text>
+    <text class="currentLocation">{{currentLoc}}</text>
   </view>
   <view class="content">
-    <form>
+    <form bindsubmit="submitTopic">
       <view>
-         <textarea class="topicContent" placeholder="输入你的话题内容" maxlength="150" placeholder-style="font-size:11pt;" auto-focus/>
+         <textarea name="topicContent" class="topicContent" placeholder="输入你的话题内容，150字以内。" maxlength="150" placeholder-style="font-size:11pt;"  bindblur="confirmContent" auto-focus="true"/>
         <view class="section" style="display:flex;">
           <label>有效期:</label>
           <picker mode="selector" value="{{periodIndex}}" range="{{periodArray}}" bindchange="listenerPeriodSelected">
@@ -16,10 +16,10 @@
         </view> 
         <view class="section">
           <label>匿名:</label>
-          <switch checked/>
+          <switch bindchange="toggleAnonymous"/>
         </view>
         <view class="section">
-           <button type="primary">提交</button>
+           <button type="primary" formType="submit">提交</button>
         </view>
       </view>
     </form>

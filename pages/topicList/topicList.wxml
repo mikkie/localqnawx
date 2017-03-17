@@ -1,53 +1,31 @@
 <!--topicList.wxml-->
 <view class="container">
-  <view class="header" style="background-color:lightgrey;">
+  <view class="header" style="background-color:#F2F2F2;">
     <image class="icon" src="../../images/map.png"></image>
     <text class="currentLocation">{{currentLoc}}</text>
   </view>
   <view class="content">
+    <view wx:for="{{topics}}" wx:key="_id" wx:for-item="topic">
     <view class="community">
       <view class="chead" style="justify-content:flex-start;">
-        <image class="userAvatar" mode="aspectFit" src="http://www.yamixed.com/static/images/no_image.jpg"></image>
-        <text class="uName">Aqua</text>
-        <text class="cDate">01-30 12:34</text>
+        <image class="userAvatar" mode="aspectFit" src="{{topic.owner.avatar}}"></image>
+        <text class="uName">{{topic.owner.name}}</text>
+        <text class="cDate">{{topic.createDate}}</text>
+        <text class="cDate mini-font">EXP:{{topic.expireLength}}{{topic.expireUnit}}</text>
+        <block wx:if="{{topic.star}}"><image class="icon" src="../../images/star-yellow.png" bindtap="handleStar" data-isAdd="false" data-topicId="{{topic._id}}" data-index="{{index}}"></image></block>
+         <block wx:else><image class="icon" src="../../images/star-grey.png" bindtap="handleStar" data-isAdd="true" data-topicId="{{topic._id}}" data-index="{{index}}"></image></block>
       </view>
-      <view class="ccontent">
-        <navigator url="../topic/topic" hover-class="none"><text>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</text></navigator>
-      </view>
+        <navigator url="../topic/topic?topicId={{topic._id}}" hover-class="none"><view class="ccontent"><text>{{topic.content}}</text></view></navigator>
     </view>
-    <view class="community">
+    </view>
+    <view class="community" hidden="{{topics.length > 0}}">
       <view class="chead" style="justify-content:flex-start;">
-        <image class="userAvatar" mode="aspectFit" src="http://www.yamixed.com/static/images/no_image.jpg"></image>
-        <text class="uName">Aqua</text>
-        <text class="cDate">01-30 12:34</text>
+        <text style="font-size:11pt;">该社区暂无话题</text>
       </view>
-      <view class="ccontent">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
-      </view>
-    </view>
-    <view class="community">
-      <view class="chead" style="justify-content:flex-start;">
-        <image class="userAvatar" mode="aspectFit" src="http://www.yamixed.com/static/images/no_image.jpg"></image>
-        <text class="uName">Aqua</text>
-        <text class="cDate">01-30 12:34</text>
-      </view>
-      <view class="ccontent">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-      </view>
-    </view>
-    <view class="community">
-      <view class="chead" style="justify-content:flex-start;">
-        <image class="userAvatar" mode="aspectFit" src="http://www.yamixed.com/static/images/no_image.jpg"></image>
-        <text class="uName">Aqua</text>
-        <text class="cDate">01-30 12:34</text>
-      </view>
-      <view class="ccontent">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-      </view>
-    </view>
+    </view>  
   </view>
   <view class="footer">
-    <navigator url="../newTopic/newTopic" hover-class="none">
+    <navigator url="../newTopic/newTopic?communityId={{communityId}}&curLocl={{currentLoc}}" hover-class="none">
       <image class="addIcon" src="../../images/add.png"></image>
     </navigator>
   </view>

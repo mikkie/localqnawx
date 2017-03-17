@@ -1,28 +1,77 @@
 <!--my.wxml-->
 <view class="container">
   <view class="header">
-    <text class="tab">我的话题</text>
-    <text class="tab lowlight">我的回答</text>
+    <view><text class="{{tab0}}" data-index="0" bindtap="changeTab">我的话题</text><view class="newMsg" style="float:right;" hidden="{{!newComment}}"></view></view>
+    <view><text class="{{tab1}}" data-index="1" bindtap="changeTab">参与的话题</text></view>
+    <view><text class="{{tab2}}" data-index="2" bindtap="changeTab">@我的话题</text><view class="newMsg" style="float:right;" hidden="{{!atMeTopics || atMeTopics.length == 0}}"></view></view>
   </view>
-  <view class="content">
+  <!-- my topics -->
+  <view class="content" hidden="{{index == 1 || index == 2}}">
+    <view wx:for="{{myTopics}}" wx:key="_id" wx:for-item="topic">
     <view class="community">
       <view class="chead" style="justify-content:flex-start;">
-        <image class="userAvatar" mode="aspectFit" src="http://www.yamixed.com/static/images/no_image.jpg"></image>
-        <text class="uName">Aqua</text>
-        <text class="cDate">2017-01-30</text>
+        <image class="userAvatar" mode="aspectFit" src="{{topic.owner.avatar}}"></image>
+        <text class="uName">{{topic.owner.name}}</text>
+        <view class="newMsg" hidden="{{topic.newComment == 0}}"></view>
+        <text class="cDate">{{topic.createDate}}</text>
+        <text class="cDate mini-font">EXP:{{topic.expireLength}}{{topic.expireUnit}}</text>
       </view>
+      <navigator url="../topic/topic?topicId={{topic._id}}" hover-class="none">
       <view class="ccontent">
-        <navigator url="../topic/topic" hover-class="none"><text>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</text></navigator>
+        <text>{{topic.content}}</text>
+      </view>
+      </navigator>
+    </view>
+    </view>
+    <view class="community" hidden="{{myTopics && myTopics.length > 0}}">
+      <view class="chead" style="justify-content:flex-start;">
+        <text style="font-size:11pt;">暂无话题</text>
       </view>
     </view>
+  </view>
+  <!-- join topics -->
+  <view class="content" hidden="{{index == 0 || index == 2}}">
+    <view wx:for="{{joinTopics}}" wx:key="_id" wx:for-item="topic">
     <view class="community">
       <view class="chead" style="justify-content:flex-start;">
-        <image class="userAvatar" mode="aspectFit" src="http://www.yamixed.com/static/images/no_image.jpg"></image>
-        <text class="uName">Aqua</text>
-        <text class="cDate">2017-01-30</text>
+        <image class="userAvatar" mode="aspectFit" src="{{topic.owner.avatar}}"></image>
+        <text class="uName">{{topic.owner.name}}</text>
+        <text class="cDate">{{topic.createDate}}</text>
+        <text class="cDate mini-font">EXP:{{topic.expireLength}}{{topic.expireUnit}}</text>
       </view>
+      <navigator url="../topic/topic?topicId={{topic._id}}" hover-class="none">
       <view class="ccontent">
-        <navigator url="../topic/topic" hover-class="none"><text>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</text></navigator>
+        <text>{{topic.content}}</text>
+      </view>
+      </navigator>
+    </view>
+    </view>
+    <view class="community" hidden="{{joinTopics && joinTopics.length > 0}}">
+      <view class="chead" style="justify-content:flex-start;">
+        <text style="font-size:11pt;">暂无话题</text>
+      </view>
+    </view>
+  </view>
+  <!-- @me topics -->
+  <view class="content" hidden="{{index == 0 || index == 1}}">
+    <view wx:for="{{atMeTopics}}" wx:key="_id" wx:for-item="topic">
+    <view class="community">
+      <view class="chead" style="justify-content:flex-start;">
+        <image class="userAvatar" mode="aspectFit" src="{{topic.owner.avatar}}"></image>
+        <text class="uName">{{topic.owner.name}}</text>
+        <text class="cDate">{{topic.createDate}}</text>
+        <text class="cDate mini-font">EXP:{{topic.expireLength}}{{topic.expireUnit}}</text>
+      </view>
+      <navigator url="../topic/topic?topicId={{topic._id}}" hover-class="none">
+      <view class="ccontent">
+        <text>{{topic.content}}</text>
+      </view>
+      </navigator>
+    </view>
+    </view>
+    <view class="community" hidden="{{atMeTopics && atMeTopics.length > 0}}">
+      <view class="chead" style="justify-content:flex-start;">
+        <text style="font-size:11pt;">暂无话题</text>
       </view>
     </view>
   </view>  

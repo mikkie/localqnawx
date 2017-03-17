@@ -1,16 +1,44 @@
 <!--star.wxml-->
 <view class="container">
   <view class="header">
-    <text class="tab">关注社区</text>
-    <text class="tab lowlight">关注话题</text>
+    <text class="{{tab0}}" data-index="0" bindtap="changeTab">关注社区</text>
+    <text class="{{tab1}}" data-index="1" bindtap="changeTab">关注话题</text>
   </view>
   <view class="content">
+    <view wx:for="{{communities}}" wx:key="_id" wx:for-item="community">
     <view class="community">
        <view class="chead">
-         <image class="avatar" mode="aspectFit" src="http://www.yamixed.com/static/images/no_image.jpg"></image>
-         <navigator class="cname" url="../topicList/topicList" hover-class="none"><text>厦门市前埔南区</text></navigator>
-         <image class="icon" src="../../images/star-yellow.png"></image>
+         <view class="avatar" style="background-color:#{{community.avatar.color}}"><text class="avatarC">{{community.avatar.character}}</text></view>
+         <navigator class="cname" url="../topicList/topicList?communityId={{community._id}}&curLocl={{community.name}}" hover-class="none"><text>{{community.name}}</text></navigator>
+         <image class="icon" src="../../images/star-yellow.png" bindtap="handleCommunityStar" data-communityId="{{community._id}}" data-index="{{index}}"></image>
        </view>
      </view>
+     </view>
+     <view wx:for="{{topics}}" wx:key="_id" wx:for-item="topic">
+    <view class="community">
+      <view class="chead" style="justify-content:flex-start;">
+        <image class="userAvatar" mode="aspectFit" src="{{topic.owner.avatar}}"></image>
+        <text class="uName">{{topic.owner.name}}</text>
+        <text class="cDate">{{topic.createDate}}</text>
+        <text class="cDate mini-font">EXP:{{topic.expireLength}}{{topic.expireUnit}}</text>
+        <image class="icon" src="../../images/star-yellow.png" bindtap="handleTopicStar" data-isAdd="false" data-topicId="{{topic._id}}" data-index="{{index}}"></image>
+      </view>
+      <navigator url="../topic/topic?topicId={{topic._id}}" hover-class="none">
+      <view class="ccontent">
+        <navigator url="../topic/topic?topicId={{topic._id}}" hover-class="none"><text>{{topic.content}}</text></navigator>
+      </view>
+      </navigator>
+    </view>
+    </view>
+    <view class="community" hidden="{{index == '1' || communities.length > 0}}">
+      <view class="chead" style="justify-content:flex-start;">
+        <text style="font-size:11pt;">暂无关注社区</text>
+      </view>
+    </view>
+    <view class="community" hidden="{{index == '0' || topics.length > 0}}">
+      <view class="chead" style="justify-content:flex-start;">
+        <text style="font-size:11pt;">暂无关注话题</text>
+      </view>
+    </view>
   </view>  
 </view>
