@@ -17,7 +17,9 @@
       </view>
         <navigator url="../topic/topic?topicId={{topic._id}}" hover-class="none">
           <view class="ccontent">
-            <text>{{topic.content}}</text>
+            <view>
+              <text>{{topic.content}}</text>
+            <view>
             <view class="section">
               <block wx:for="{{topic.images}}" wx:for-item="photo" wx:key="index">
                 <view class="photoView">
