@@ -29,6 +29,14 @@ Page({
      if(utils.stringUtil.isEmptyOrNull(this.data.communityId) || utils.stringUtil.isEmptyOrNull(this.data.currentLoc) || utils.stringUtil.isEmptyOrNull(this.data.content)){
          return;
      }
+     var imageUrls = [];
+     if(that.data.photoes && that.data.photoes.length > 0){
+        var yyyyMMdd = utils.formatTimeyyyyMMdd(new Date());
+        for(var i in that.data.photoes){
+           var key = [yyyyMMdd,that.generateRandomFileName(that.data.photoes[i],that)].join('/');
+           imageUrls.push(key); 
+        }
+     }
      app.getUserInfo(function(userInfo){
         if(userInfo){
           utils.serviceUtil.post(conf.service.createNewTopic,{
@@ -39,7 +47,8 @@ Page({
               communityName : that.data.currentLoc,
               expireLength : that.data.expireLengths[that.data.periodIndex],
               expireDateUnit : that.data.expireDateUnits[that.data.periodIndex],
-              anonymous : that.data.anonymous
+              anonymous : that.data.anonymous,
+              imageUrls : imageUrls,
            },function(res){
               if(res.data["401"]){
                  wx.showModal({
@@ -51,7 +60,7 @@ Page({
               else{
                  //uploadImages
                  if(res.data.success && that.data.photoes.length > 0){
-                    that.uploadImages(res.data.success,that);
+                    that.uploadImages(res.data.success,imageUrls,that);
                  }
                  wx.navigateBack({delta: 1}) 
               }
@@ -122,14 +131,14 @@ Page({
       var subfix = that.get_suffix(path);
       return number + subfix;
   },
-  uploadImages : function(topic,that){
+  uploadImages : function(topic,imageUrls,that){
      var aliupload = wx.getStorageSync('aliupload');
      if(aliupload && aliupload.expire && aliupload.expire > new Date().getTime()){
        console.log(JSON.stringify(aliupload));
        var photoes = that.data.photoes;
        var yyyyMMdd = utils.formatTimeyyyyMMdd(new Date());
        for(var i = 0; i < photoes.length;i++){
-          var key =  [aliupload.dir,yyyyMMdd,that.generateRandomFileName(photoes[i],that)].join('/'); 
+          var key =  [aliupload.dir,imageUrls[i]].join('/'); 
           wx.uploadFile({
             url: aliupload.host, 
             filePath: photoes[i],
