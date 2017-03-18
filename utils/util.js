@@ -1,6 +1,13 @@
 //index.js
 var conf = require('conf');
 
+var formatTimeyyyyMMdd = function(){
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1;
+    var day = date.getDate();
+    return [year, month, day].map(formatNumber).join('');
+};
+
 function formatTime(date) {
   var year = date.getFullYear()
   var month = date.getMonth() + 1
@@ -26,6 +33,16 @@ var stringUtil = {
       }
       str = str.replace(/(^\s*)|(\s*$)/g, "")
       return str.length == 0;
+   },
+   random_string : function(len) {
+　　  len = len || 32;
+　　  var chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678';   
+　　  var maxPos = chars.length;
+　　  var pwd = '';
+　　  for (var i = 0; i < len; i++) {
+    　　pwd += chars.charAt(Math.floor(Math.random() * maxPos));
+      }
+      return pwd;
    }
 };
 
@@ -95,5 +112,6 @@ module.exports = {
   formatTime: formatTime,
   stringUtil : stringUtil,
   serviceUtil : serviceUtil,
-  arrayUtil : arrayUtil
+  arrayUtil : arrayUtil,
+  formatTimeyyyyMMdd : formatTimeyyyyMMdd
 }
