@@ -7,6 +7,11 @@ Page({
        communityId : '',
        topics : []
     },
+    previewPic : function(e){
+       wx.previewImage({
+           urls: [e.currentTarget.dataset.src] 
+       });
+    },
     onShareAppMessage: function () {
       var that = this;  
       return {
