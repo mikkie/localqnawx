@@ -11,7 +11,7 @@
         <view class="section">
           <block wx:for="{{photoes}}" wx:for-item="photo" wx:key="index">
              <view class="photoView">
-               <image class="photo" src="{{photo}}" data-index="{{index}}" bindtap="previewPic" bindlongtap="removePic"></image>
+               <image class="photo" src="{{photo}}" data-src="{{photo}}" data-index="{{index}}" bindtap="previewPic" bindlongtap="removePic"></image>
              </view>
           </block>
           <image class="pickPic" src="../../images/pickPic.png" bindtap="pickPic" hidden="{{photoes.length == 9}}"></image>

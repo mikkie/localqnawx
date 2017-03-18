@@ -9,6 +9,11 @@ Page({
       comments : [],
       anonymous : false
     },
+    previewPic : function(e){
+       wx.previewImage({
+           urls: [e.currentTarget.dataset.src] 
+       });
+    },
     onShareAppMessage: function () {
       var that = this; 
       return {

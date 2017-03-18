@@ -11,6 +11,13 @@
       <view class="ccontent" style="padding-top:5pt;">
         <text>{{topic.content}}</text>
       </view>
+      <view class="section">
+      <block wx:for="{{topic.images}}" wx:for-item="photo" wx:key="index">
+         <view class="photoView">
+            <image class="photo" src="{{photo}}" data-src="{{photo}}" data-index="{{index}}" bindtap="previewPic" bindlongtap="removePic"></image>
+         </view>
+      </block>
+      </view>
     </view>  
   </view>
   <view class="content">
