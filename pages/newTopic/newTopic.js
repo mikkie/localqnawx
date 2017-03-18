@@ -132,10 +132,10 @@ Page({
   uploadImages : function(topic,imageUrls,that){
      var aliupload = wx.getStorageSync('aliupload');
      if(aliupload && aliupload.expire && aliupload.expire > new Date().getTime()){
-       wx.showModal({
-          title: '发布话题',
-          content: '图片上传中',
-          showCancel : false       
+       wx.showToast({
+         title: '图片上传中',
+         icon: 'loading',
+         duration: 10000
        });
        //console.log(JSON.stringify(aliupload));
        var photoes = that.data.photoes;
