@@ -2,3 +2,12 @@
     justify-content: space-around;
 }
 
+.photoView{
+  margin:2px;
+  display:inline-block;
+}
+
+.photo{
+  width : 32px;
+  height : 32px;
+}
