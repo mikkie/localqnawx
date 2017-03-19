@@ -54,9 +54,25 @@ App({
       }
     });
   },
+  checkNetwork : function(){
+     setInterval(function(){
+         wx.getNetworkType({
+            success : function(res){
+               if(res.networkType == 'none'){
+                  wx.showModal({
+                    title : '网络异常',
+                    content : '你已进入没有网络的异次元，请检查网络连接',
+                    showCancel : false
+                  });  
+               }
+            }
+         });
+     },15000);
+  },
   onShow : function(){
        this.globalData.init = false;
        this.doGetUserInfo(null);
+       this.checkNetwork();
   },
   globalData : {
      init : false,
