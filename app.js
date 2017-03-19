@@ -71,10 +71,14 @@ App({
          });
      },15000);
   },
-  onShow : function(){
+  onLaunch : function(){
        this.globalData.init = false;
        this.doGetUserInfo(null);
        this.checkNetwork();
+  },
+  onShow : function(){
+       this.globalData.init = false;
+       this.doGetUserInfo(null);
   },
   globalData : {
      init : false,
@@ -89,5 +93,11 @@ App({
    },
    cancelLoading:function(){
         wx.hideToast();
+   },
+   debugInfo : function(title){
+      wx.showToast({
+         title: title,
+         icon: 'success'
+      });
    }
 })
