@@ -7,7 +7,7 @@ Page({
        userInfo : null,
        globalSettings : null 
    },
-   onLoad : function(){
+   onShow : function(){
         var that = this;
         app.login(function(){
            that.setData({userInfo : app.globalData.userInfo});

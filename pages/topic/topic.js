@@ -25,6 +25,8 @@ Page({
     },
     onLoad : function(options){
         this.setData({topicId : options.topicId});
+    },
+    onShow : function(){
         var that = this;
         app.login(function(){
            that.loadData(that);    
@@ -61,7 +63,7 @@ Page({
             if(res.data.success && res.data.success.length == 1){
                that.setData({topic : res.data.success[0]}); 
             }
-            else{
+            else if(!res.data["401"]){
                wx.showModal({
                    title: '提示',
                    content: '本话题已移除',

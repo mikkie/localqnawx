@@ -64,7 +64,7 @@ Page({
           default :  break;   
        }
     },
-    onLoad : function(){
+    onShow : function(){
         var that = this;
         app.login(function(){
            that.loadData(that);

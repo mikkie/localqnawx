@@ -32,6 +32,8 @@ Page({
     },
     onLoad : function(options){
         this.setData({currentLoc : options.curLocl,communityId : options.communityId});
+    },
+    onShow : function(){
         var that = this; 
         app.login(function(){
            that.loadTopicsByCommunityId(that);

@@ -49,7 +49,7 @@ Page({
             console.log(err);
        }); 
     },
-    onLoad : function(){
+    onShow : function(){
         var that = this;
         app.login(function(){
            that.loadAllData(that);
