@@ -42,7 +42,7 @@ Page({
           utils.serviceUtil.post(conf.service.createNewTopic,{
               userInfo : userInfo,
               content : that.data.content,
-              sessionId : wx.getStorageSync('sessionId'),
+              sessionId : app.globalData.sessionId,
               communityId : that.data.communityId,
               communityName : that.data.currentLoc,
               expireLength : that.data.expireLengths[that.data.periodIndex],

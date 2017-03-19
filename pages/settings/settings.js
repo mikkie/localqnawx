@@ -7,7 +7,7 @@ Page({
        userInfo : null,
        globalSettings : null 
    },
-   onShow : function(){
+   onLoad : function(){
         var that = this;
         app.login(function(){
            that.setData({userInfo : app.globalData.userInfo});
@@ -29,7 +29,7 @@ Page({
        });
     },
     updateSettings : function(that){
-       util.serviceUtil.post(conf.service.updateSettings,{sessionId : wx.getStorageSync('sessionId'),
+       util.serviceUtil.post(conf.service.updateSettings,{sessionId : app.globalData.sessionId,
            settings : that.data.settings},function(res){
            wx.setStorageSync('settings',res.data.success);
        },function(err){

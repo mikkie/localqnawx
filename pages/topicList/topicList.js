@@ -15,7 +15,7 @@ Page({
       };
     },
     loadTopicsByCommunityId : function(that){
-        utils.serviceUtil.get(conf.service.findTopicsByCommunityId,{communityId : this.data.communityId,sessionId : wx.getStorageSync('sessionId')},function(res){
+        utils.serviceUtil.get(conf.service.findTopicsByCommunityId,{communityId : this.data.communityId,sessionId : app.globalData.sessionId},function(res){
     if(res.data && res.data.success){
        that.setData({topics : res.data.success});
     }
@@ -26,18 +26,16 @@ Page({
             console.log(err); 
         });
     },
-    onShow : function(){
-       var that = this; 
-       app.login(function(){
-           that.loadTopicsByCommunityId(that);
-       });
-    },
     onPullDownRefresh : function(){
       this.loadTopicsByCommunityId(this);
       wx.stopPullDownRefresh(); 
     },
     onLoad : function(options){
         this.setData({currentLoc : options.curLocl,communityId : options.communityId});
+        var that = this; 
+        app.login(function(){
+           that.loadTopicsByCommunityId(that);
+        });
     },
     handleStar : function(e){
      var index = e.currentTarget.dataset.index;
@@ -52,7 +50,7 @@ Page({
      utils.serviceUtil.post(conf.service.toggleStarTopic,{
               topicId : e.currentTarget.dataset.topicid,
               isAdd : e.currentTarget.dataset.isadd, 
-              sessionId : wx.getStorageSync('sessionId')
+              sessionId : app.globalData.sessionId
            },function(res){
               //that.setData({communities : res.data.success});
            },function(err){

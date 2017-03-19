@@ -25,11 +25,15 @@ Page({
     },
     onLoad : function(options){
         this.setData({topicId : options.topicId});
+        var that = this;
+        app.login(function(){
+           that.loadData(that);    
+        });
     },
     tagReaded : function(that){
        utils.serviceUtil.post(conf.service.tagTopicReaded,{
               topicId : that.data.topicId,
-              sessionId : wx.getStorageSync('sessionId')
+              sessionId : app.globalData.sessionId
        },function(res){
        },function(err){
               console.log(err);
@@ -39,7 +43,7 @@ Page({
        var that = this; 
        utils.serviceUtil.get(conf.service.findCommentsByTopicId,{
               topicId : that.data.topicId,
-              sessionId : wx.getStorageSync('sessionId')
+              sessionId : app.globalData.sessionId
        },function(res){
               that.setData({comments : res.data.success});
               if(res.data.success && res.data.success.length > 0){
@@ -52,7 +56,7 @@ Page({
     loadData : function(that){
         utils.serviceUtil.get(conf.service.getTopicById,{
             topicId : that.data.topicId,
-            sessionId : wx.getStorageSync('sessionId')
+            sessionId : app.globalData.sessionId
        },function(res){
             if(res.data.success && res.data.success.length == 1){
                that.setData({topic : res.data.success[0]}); 
@@ -74,12 +78,6 @@ Page({
        });
        that.loadComment();
     },
-    onShow : function(){
-       var that = this;
-       app.login(function(){
-           that.loadData(that);    
-       });
-    },
     onPullDownRefresh : function(){
       this.loadData(this); 
       wx.stopPullDownRefresh(); 
@@ -99,7 +97,7 @@ Page({
              utils.serviceUtil.post(conf.service.createNewComment,{
               userInfo : userInfo,
               content : content,
-              sessionId : wx.getStorageSync('sessionId'),
+              sessionId : app.globalData.sessionId,
               topicId : that.data.topicId,
               anonymous : that.data.anonymous,
               to : []
@@ -173,7 +171,7 @@ Page({
               if (res.confirm) {
                   var topicid = e.target.dataset.topicid;
                   utils.serviceUtil.post(conf.service.deleteTopic,{
-                     sessionId : wx.getStorageSync('sessionId'),
+                     sessionId : app.globalData.sessionId,
                      topicId : topicid
                   },function(res){
                      wx.navigateBack({delta: 1});
@@ -194,7 +192,7 @@ Page({
                   var commentid = e.target.dataset.commentid;
                   var index = e.target.dataset.index;
                   utils.serviceUtil.post(conf.service.deleteComment,{
-                     sessionId : wx.getStorageSync('sessionId'),
+                     sessionId : app.globalData.sessionId,
                      commentId : commentid
                   },function(res){
                      that.data.comments.splice(index,1);

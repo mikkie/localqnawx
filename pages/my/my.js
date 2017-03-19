@@ -14,7 +14,7 @@ Page({
     },
     loadMyTopic : function(that){
        util.serviceUtil.get(conf.service.findTopicsByOwner,{
-           sessionId : wx.getStorageSync('sessionId')
+           sessionId : app.globalData.sessionId
        },function(res){
             var find = false;
             that.setData({myTopics : res.data.success});
@@ -33,7 +33,7 @@ Page({
     },
     loadMyReplies : function(that){
        util.serviceUtil.get(conf.service.findUserRepliesTopics,{
-           sessionId : wx.getStorageSync('sessionId')
+           sessionId : app.globalData.sessionId
        },function(res){
             that.setData({joinTopics : res.data.success});
        },function(err){
@@ -42,14 +42,14 @@ Page({
     },
     loadAtMe : function(that){
        util.serviceUtil.get(conf.service.findAtmeTopics,{
-           sessionId : wx.getStorageSync('sessionId')
+           sessionId : app.globalData.sessionId
        },function(res){
             that.setData({atMeTopics : res.data.success});
        },function(err){
             console.log(err);
        }); 
     },
-    onShow : function(){
+    onLoad : function(){
         var that = this;
         app.login(function(){
            that.loadAllData(that);

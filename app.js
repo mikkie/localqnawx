@@ -23,10 +23,12 @@ App({
     });
   },
   doLogin : function(callback){
+     var that = this;
      wx.login({
       success: function (result) {
          util.serviceUtil.post(conf.service.login,{code : result.code},function(res){
-           wx.setStorageSync('sessionId', res.data.success.sessionId);
+           // wx.setStorageSync('sessionId', res.data.success.sessionId);
+           that.globalData.sessionId = res.data.success.sessionId;
            wx.setStorageSync('settings', res.data.success.settings);
            console.log('sessionId=' + res.data.success);
            if(typeof callback == 'function'){
@@ -83,6 +85,7 @@ App({
   },
   globalData : {
      init : false,
+     sessionId : '',
      userInfo : null,
      networkType : ''
   },

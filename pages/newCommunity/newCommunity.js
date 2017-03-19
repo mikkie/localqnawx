@@ -1,3 +1,4 @@
+var app = getApp();
 var utils = require('../../utils/util.js');
 var conf = require('../../utils/conf.js');
 Page({
@@ -32,7 +33,7 @@ Page({
       else{
           utils.serviceUtil.post(conf.service.createCommunity,{
               location : this.data.pos,
-              sessionId : wx.getStorageSync('sessionId'),
+              sessionId : app.globalData.sessionId,
               name : this.data.communityName
            },function(res){
               if(res.data["401"]){

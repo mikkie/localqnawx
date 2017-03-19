@@ -11,7 +11,7 @@ Page({
     },
     loadStarCommunities : function(that){
        util.serviceUtil.get(conf.service.findStarCommunitiesByOwner,{
-           sessionId : wx.getStorageSync('sessionId')
+           sessionId : app.globalData.sessionId
        },function(res){
             that.setData({communities : res.data.success});
             that.setData({topics : []});
@@ -21,7 +21,7 @@ Page({
     },
     loadStarTopics : function(that){
        util.serviceUtil.get(conf.service.findStarTopicsByOwner,{
-           sessionId : wx.getStorageSync('sessionId')
+           sessionId : app.globalData.sessionId
        },function(res){
             that.setData({topics : res.data.success});
             that.setData({communities : []});
@@ -36,7 +36,7 @@ Page({
         util.serviceUtil.post(conf.service.toggleStarCommunity,{
            communityId : e.currentTarget.dataset.communityid,
            isAdd : 'false', 
-           sessionId : wx.getStorageSync('sessionId')
+           sessionId : app.globalData.sessionId
         },function(res){
             //that.setData({communities : res.data.success});
         },function(err){
@@ -50,7 +50,7 @@ Page({
         util.serviceUtil.post(conf.service.toggleStarTopic,{
             topicId : e.currentTarget.dataset.topicid,
             isAdd : 'false', 
-            sessionId : wx.getStorageSync('sessionId')
+            sessionId : app.globalData.sessionId
         },function(res){
             //that.setData({communities : res.data.success});
         },function(err){
@@ -64,7 +64,7 @@ Page({
           default :  break;   
        }
     },
-    onShow : function(){
+    onLoad : function(){
         var that = this;
         app.login(function(){
            that.loadData(that);

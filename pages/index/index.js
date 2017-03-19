@@ -36,7 +36,7 @@ Page({
      util.serviceUtil.post(conf.service.toggleStarCommunity,{
               communityId : e.currentTarget.dataset.communityid,
               isAdd : e.currentTarget.dataset.isadd, 
-              sessionId : wx.getStorageSync('sessionId')
+              sessionId : app.globalData.sessionId
            },function(res){
               //that.setData({communities : res.data.success});
            },function(err){
@@ -49,7 +49,7 @@ Page({
      if(!util.stringUtil.isEmptyOrNull(name)){
         util.serviceUtil.post(conf.service.findCommunityByName,{
               name : name,
-              sessionId : wx.getStorageSync('sessionId')
+              sessionId : app.globalData.sessionId
            },function(res){
               that.setData({communities : res.data.success});
            },function(err){
@@ -64,7 +64,7 @@ Page({
            util.serviceUtil.post(conf.service.loadHomePageCommunities,{
               location : loc,
               distance : wx.getStorageSync('settings').distance,
-              sessionId : wx.getStorageSync('sessionId')
+              sessionId : app.globalData.sessionId
            },function(res){
               if(res.data.success){
                 var array = [];
