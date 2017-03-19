@@ -59,7 +59,7 @@ App({
      setInterval(function(){
          wx.getNetworkType({
             success : function(res){
-               if(that.globalData.networkType != 'none' && res.networkType == 'none'){
+               if(that.globalData.networkType && that.globalData.networkType != 'none' && res.networkType == 'none'){
                   wx.showModal({
                     title : '网络异常',
                     content : '你已进入没有网络的异次元，请检查网络连接',
