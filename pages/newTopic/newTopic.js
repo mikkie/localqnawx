@@ -137,7 +137,6 @@ Page({
          icon: 'loading',
          duration: 10000
        });
-       //console.log(JSON.stringify(aliupload));
        var photoes = that.data.photoes;
        var yyyyMMdd = utils.formatTimeyyyyMMdd(new Date());
        var statics = 0;
@@ -155,7 +154,6 @@ Page({
               'signature': aliupload.signature,
             },
             success: function(res){
-              var data = res.data
             },
             fail : function(err){
                console.log(err);
