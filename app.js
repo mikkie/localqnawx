@@ -77,8 +77,10 @@ App({
        this.checkNetwork();
   },
   onShow : function(){
+    if(conf.app.debug == true){
        this.globalData.init = false;
-       this.doGetUserInfo(null);
+    }
+    this.doGetUserInfo(null);
   },
   globalData : {
      init : false,

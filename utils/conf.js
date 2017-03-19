@@ -1,4 +1,7 @@
 var conf = {
+   app : {
+      debug : false
+   },
    host : 'https://www.yamixed.com',
    service : {
       login : '/user/login', 
