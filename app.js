@@ -40,8 +40,8 @@ App({
   },
   login:function(callback){
     if(!this.globalData.init){
-        this.doLogin(callback);
         this.globalData.init = true;
+        this.doLogin(callback);
         return;
     }
     var that = this;
@@ -73,7 +73,6 @@ App({
   },
   onLaunch : function(){
        this.globalData.init = false;
-       this.doGetUserInfo(null);
        this.checkNetwork();
   },
   onShow : function(){

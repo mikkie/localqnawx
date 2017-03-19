@@ -2,7 +2,7 @@ var conf = {
    app : {
       debug : false
    },
-   host : 'https://www.yamixed.com',
+   host : 'https://192.168.0.101:8443',
    service : {
       login : '/user/login', 
       loadHomePageCommunities : '/community/loadIndexPageCommunities',
