@@ -75,7 +75,10 @@ Page({
        that.loadComment();
     },
     onShow : function(){
-       this.loadData(this); 
+       var that = this;
+       app.login(function(){
+           that.loadData(that);    
+       });
     },
     onPullDownRefresh : function(){
       this.loadData(this); 
