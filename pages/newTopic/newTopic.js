@@ -60,7 +60,7 @@ Page({
               else{
                  //uploadImages
                  if(res.data.success && that.data.photoes.length > 0){
-                    that.uploadImages(res.data.success,imageUrls,that);
+                    that.uploadImages(imageUrls,that);
                  }
                  else{
                     wx.navigateBack({delta: 1}); 
@@ -107,8 +107,10 @@ Page({
     });
   },
   previewPic : function(e){
+       var that = this;
        wx.previewImage({
-           urls: [e.currentTarget.dataset.src] 
+           current : e.currentTarget.dataset.src,
+           urls : that.data.photoes 
        });
   },
   removePic : function(e){
@@ -129,20 +131,16 @@ Page({
       var subfix = that.get_suffix(path);
       return number + subfix;
   },
-  uploadImages : function(topic,imageUrls,that){
-     var aliupload = wx.getStorageSync('aliupload');
-     if(aliupload && aliupload.expire && aliupload.expire > new Date().getTime()){
-       wx.showToast({
+  doUpload : function(i,aliupload,imageUrls,yyyyMMdd,that){
+     wx.showToast({
          title: '图片上传中',
          icon: 'loading',
+         mask : true,
          duration: 10000
-       });
-       var photoes = that.data.photoes;
-       var yyyyMMdd = utils.formatTimeyyyyMMdd(new Date());
-       var statics = 0;
-       for(var i = 0; i < photoes.length;i++){
-          var key =  [aliupload.dir,imageUrls[i]].join('/'); 
-          wx.uploadFile({
+     }); 
+     var photoes = that.data.photoes;
+     var key =  [aliupload.dir,imageUrls[i]].join('/'); 
+     wx.uploadFile({
             url: aliupload.host, 
             filePath: photoes[i],
             name: 'file',
@@ -154,19 +152,27 @@ Page({
               'signature': aliupload.signature,
             },
             success: function(res){
+               console.log('success:' + key);
             },
             fail : function(err){
-               console.log(err);
+               console.log('failed:' + err + key);
             },
             complete : function(){
-               statics++;
-               if(statics == photoes.length){
-                  wx.hideToast();
+               wx.hideToast();
+               if(i < photoes.length - 1){
+                  that.doUpload(++i,aliupload,imageUrls,yyyyMMdd,that); 
+               }
+               else{
                   wx.navigateBack({delta: 1});
                }
             }
           }); 
-       } 
+  },
+  uploadImages : function(imageUrls,that){
+     var aliupload = wx.getStorageSync('aliupload');
+     if(aliupload && aliupload.expire && aliupload.expire > new Date().getTime()){
+       var yyyyMMdd = utils.formatTimeyyyyMMdd(new Date());
+       that.doUpload(0,aliupload,imageUrls,yyyyMMdd,that);
      }
   } 
 })

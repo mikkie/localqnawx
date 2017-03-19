@@ -10,8 +10,10 @@ Page({
       anonymous : false
     },
     previewPic : function(e){
+       var that = this;
        wx.previewImage({
-           urls: [e.currentTarget.dataset.src] 
+           current : e.currentTarget.dataset.src,
+           urls: that.data.topic.images 
        });
     },
     onShareAppMessage: function () {
