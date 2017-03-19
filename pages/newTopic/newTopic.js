@@ -10,7 +10,8 @@ Page({
     content : '',
     expireLengths : ['5','1','4','24','7'],
     expireDateUnits : ['m','h','h','h','d'],
-    anonymous : false
+    anonymous : false,
+    photoes : []
   },
   confirmContent : function(e){
      this.data.content = e.detail.value;
@@ -28,6 +29,14 @@ Page({
      if(utils.stringUtil.isEmptyOrNull(this.data.communityId) || utils.stringUtil.isEmptyOrNull(this.data.currentLoc) || utils.stringUtil.isEmptyOrNull(this.data.content)){
          return;
      }
+     var imageUrls = [];
+     if(that.data.photoes && that.data.photoes.length > 0){
+        var yyyyMMdd = utils.formatTimeyyyyMMdd(new Date());
+        for(var i in that.data.photoes){
+           var key = [yyyyMMdd,that.generateRandomFileName(that.data.photoes[i],that)].join('/');
+           imageUrls.push(key); 
+        }
+     }
      app.getUserInfo(function(userInfo){
         if(userInfo){
           utils.serviceUtil.post(conf.service.createNewTopic,{
@@ -38,7 +47,8 @@ Page({
               communityName : that.data.currentLoc,
               expireLength : that.data.expireLengths[that.data.periodIndex],
               expireDateUnit : that.data.expireDateUnits[that.data.periodIndex],
-              anonymous : that.data.anonymous
+              anonymous : that.data.anonymous,
+              imageUrls : imageUrls,
            },function(res){
               if(res.data["401"]){
                  wx.showModal({
@@ -48,7 +58,13 @@ Page({
                  });
               }
               else{
-                 wx.navigateBack({delta: 1}) 
+                 //uploadImages
+                 if(res.data.success && that.data.photoes.length > 0){
+                    that.uploadImages(res.data.success,imageUrls,that);
+                 }
+                 else{
+                    wx.navigateBack({delta: 1}); 
+                 }
               }
            },function(err){
                console.log(err);
@@ -57,7 +73,100 @@ Page({
      });
 
   },
+  initUpload : function(){
+     var aliupload = wx.getStorageSync('aliupload');
+     if(!aliupload || !aliupload.expire || aliupload.expire < new Date().getTime()){
+        utils.serviceUtil.post(conf.service.getUploadSignature,{},function(res){
+          if(res.data.success){
+             wx.setStorageSync('aliupload',res.data.success);   
+          }
+        });
+     }
+  },
   onLoad : function(options){
        this.setData({currentLoc : options.curLocl,communityId : options.communityId});
+       this.initUpload();
+  },
+  pickPic : function(){
+    var that = this;
+    wx.chooseImage({
+      count: 9, // 默认9
+      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+      success: function (res) {
+         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+         if(that.data.photoes.length < 9){
+            if(res.tempFilePaths && res.tempFilePaths.length > 0){
+               for(var i in res.tempFilePaths){
+                  that.data.photoes.push(res.tempFilePaths[i]);
+               } 
+               that.setData({photoes : that.data.photoes});
+            }
+         }
+      }
+    });
+  },
+  previewPic : function(e){
+       wx.previewImage({
+           urls: [e.currentTarget.dataset.src] 
+       });
+  },
+  removePic : function(e){
+    var index = e.currentTarget.dataset.index;
+    this.data.photoes.splice(index,1);
+    this.setData({photoes : this.data.photoes});
+  },
+  get_suffix : function(filename) {
+    var pos = filename.lastIndexOf('.')
+    var suffix = ''
+    if (pos != -1) {
+        suffix = filename.substring(pos)
+    }
+    return suffix;
+  },
+  generateRandomFileName : function(path,that){
+      var number = utils.stringUtil.random_string(32);
+      var subfix = that.get_suffix(path);
+      return number + subfix;
+  },
+  uploadImages : function(topic,imageUrls,that){
+     var aliupload = wx.getStorageSync('aliupload');
+     if(aliupload && aliupload.expire && aliupload.expire > new Date().getTime()){
+       wx.showToast({
+         title: '图片上传中',
+         icon: 'loading',
+         duration: 10000
+       });
+       var photoes = that.data.photoes;
+       var yyyyMMdd = utils.formatTimeyyyyMMdd(new Date());
+       var statics = 0;
+       for(var i = 0; i < photoes.length;i++){
+          var key =  [aliupload.dir,imageUrls[i]].join('/'); 
+          wx.uploadFile({
+            url: aliupload.host, 
+            filePath: photoes[i],
+            name: 'file',
+            formData:{
+              'key' : key,
+              'policy': aliupload.policy,
+              'OSSAccessKeyId': aliupload.accessid, 
+              'success_action_status' : '200', 
+              'signature': aliupload.signature,
+            },
+            success: function(res){
+            },
+            fail : function(err){
+               console.log(err);
+            },
+            complete : function(){
+               statics++;
+               if(statics == photoes.length){
+                  wx.hideToast();
+                  wx.navigateBack({delta: 1});
+               }
+            }
+          }); 
+       } 
+     }
   } 
 })

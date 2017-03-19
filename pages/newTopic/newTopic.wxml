@@ -8,6 +8,17 @@
     <form bindsubmit="submitTopic">
       <view>
          <textarea name="topicContent" class="topicContent" placeholder="输入你的话题内容，150字以内。" maxlength="150" placeholder-style="font-size:11pt;"  bindblur="confirmContent" auto-focus="true"/>
+        <view class="section">
+          <block wx:for="{{photoes}}" wx:for-item="photo" wx:key="index">
+             <view class="photoView">
+               <image class="photo" src="{{photo}}" data-src="{{photo}}" data-index="{{index}}" bindtap="previewPic" bindlongtap="removePic"></image>
+             </view>
+          </block>
+          <image class="pickPic" src="../../images/pickPic.png" bindtap="pickPic" hidden="{{photoes.length == 9}}"></image>
+        </view>
+        <view class="section" hidden="{{photoes.length == 0}}">
+           <text class="mini-font" style="color:red;">长按删除已选择图片</text>
+        </view>
         <view class="section" style="display:flex;">
           <label>有效期:</label>
           <picker mode="selector" value="{{periodIndex}}" range="{{periodArray}}" bindchange="listenerPeriodSelected">

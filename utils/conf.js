@@ -22,7 +22,8 @@ var conf = {
       getGlobalSettings : '/globalSetting/getGlobalSettings',
       deleteTopic : '/topic/deleteTopic',
       deleteComment : '/comment/deleteComment',
-      tagTopicReaded : '/topic/tagTopicReaded'
+      tagTopicReaded : '/topic/tagTopicReaded',
+      getUploadSignature : '/fileUpload/getUploadSignature'
    }
 };
 

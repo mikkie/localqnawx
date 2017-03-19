@@ -11,6 +11,13 @@
       <view class="ccontent" style="padding-top:5pt;">
         <text>{{topic.content}}</text>
       </view>
+      <view class="section">
+      <block wx:for="{{topic.images}}" wx:for-item="photo" wx:key="index">
+         <view class="photoView">
+            <image class="photo" src="{{photo}}" data-src="{{photo}}" data-index="{{index}}" bindtap="previewPic"></image>
+         </view>
+      </block>
+      </view>
     </view>  
   </view>
   <view class="content">
@@ -55,7 +62,7 @@
   <view class="footer">
     <form bindsubmit="submitComment">
      <view class="fcontainer">
-      <textarea class="qInput" placeholder="输入你的回答，150字以内。" maxlength="150" fixed="true" name="content" placeholder-style="font-size:11pt;" value="{{content}}"/>匿<checkbox-group bindchange="toggleAnonymous"><checkbox /></checkbox-group><button class="okBtn" type="primary" size="mini" formType="submit">提交</button>
+      <textarea class="qInput" placeholder="输入你的回答，150字以内。" maxlength="150" fixed="true" bindinput="bindinput" name="content" placeholder-style="font-size:11pt;" value="{{content}}"/>匿<checkbox-group bindchange="toggleAnonymous"><checkbox /></checkbox-group><button class="okBtn" type="primary" size="mini" formType="submit">提交</button>
      </view>
     </form>
   </view>

@@ -9,6 +9,11 @@ Page({
       comments : [],
       anonymous : false
     },
+    previewPic : function(e){
+       wx.previewImage({
+           urls: [e.currentTarget.dataset.src] 
+       });
+    },
     onShareAppMessage: function () {
       var that = this; 
       return {
@@ -144,6 +149,9 @@ Page({
            },function(err){
                console.log(err);
            });
+    },
+    bindinput : function(e){
+       this.setData({content : e.detail.value}); 
     },
     atUser : function(e){
        var atUsername = e.target.dataset.username;
