@@ -22,7 +22,7 @@ App({
       }
     });
   },
-  doLogin : function(callback,that){
+  doLogin : function(callback){
      wx.login({
       success: function (result) {
          util.serviceUtil.post(conf.service.login,{code : result.code},function(res){
@@ -40,7 +40,7 @@ App({
   },
   login:function(callback){
     if(!this.globalData.init){
-        this.doLogin(callback,that);
+        this.doLogin(callback);
         this.globalData.init = true;
         return;
     }
@@ -50,7 +50,7 @@ App({
          callback();
       },
       fail: function(){
-         that.doLogin(callback,that);
+         that.doLogin(callback);
       }
     });
   },
