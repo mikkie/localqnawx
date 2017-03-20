@@ -37,6 +37,9 @@ Page({
     },
     onLoad : function(options){
         this.setData({currentLoc : options.curLocl,communityId : options.communityId});
+        wx.setNavigationBarTitle({
+          title: this.data.currentLoc + '-邻答'
+        });
     },
     onShow : function(){
         var that = this; 

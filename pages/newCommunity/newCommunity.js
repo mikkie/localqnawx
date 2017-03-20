@@ -7,6 +7,11 @@ Page({
     communityName : '',
     pos : []
   },
+  onLoad : function(){
+     wx.setNavigationBarTitle({
+        title: '新建社区-邻答'
+     });
+  },
   openMap : function(event){
       var that = this;   
       wx.chooseLocation({

@@ -87,6 +87,9 @@ Page({
      }
   },
   onLoad : function(options){
+       wx.setNavigationBarTitle({
+         title: '新建话题-邻答'
+       });
        this.setData({currentLoc : options.curLocl,communityId : options.communityId,photoes : []});
        this.initUpload();
   },

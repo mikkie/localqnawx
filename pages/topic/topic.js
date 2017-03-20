@@ -16,11 +16,18 @@ Page({
            urls: that.data.topic.images 
        });
     },
+    buildTitle : function(that){
+       if(that.data.topic){
+          return (that.data.topic.content ? that.data.topic.content : '来自' + that.data.topic.community.name + '的图片话题') + '-邻答';
+       }
+       else{
+          return '话题-邻答';
+       }
+    },
     onShareAppMessage: function () {
-      var that = this; 
       return {
-        title: (that.data.topic.content ? that.data.topic.content : '来自' + that.data.topic.community.name + '的图片话题') + '-邻答',
-        path: '/pages/topic/topic?topicId=' + that.data.topicId
+        title: this.buildTitle(this),
+        path: '/pages/topic/topic?topicId=' + this.data.topicId
       };
     },
     onLoad : function(options){
@@ -62,6 +69,9 @@ Page({
        },function(res){
             if(res.data.success && res.data.success.length == 1){
                that.setData({topic : res.data.success[0]}); 
+               wx.setNavigationBarTitle({
+                  title: that.buildTitle(that)
+               });
             }
             else if(!res.data["401"]){
                wx.showModal({

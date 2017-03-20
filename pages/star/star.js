@@ -10,6 +10,9 @@ Page({
         topics : []
     },
     loadStarCommunities : function(that){
+       wx.setNavigationBarTitle({
+         title: '关注社区-邻答'
+       });
        util.serviceUtil.get(conf.service.findStarCommunitiesByOwner,{
            sessionId : app.globalData.sessionId
        },function(res){
@@ -20,6 +23,9 @@ Page({
        }); 
     },
     loadStarTopics : function(that){
+       wx.setNavigationBarTitle({
+         title: '关注话题-邻答'
+       });
        util.serviceUtil.get(conf.service.findStarTopicsByOwner,{
            sessionId : app.globalData.sessionId
        },function(res){

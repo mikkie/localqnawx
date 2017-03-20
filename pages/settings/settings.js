@@ -7,6 +7,11 @@ Page({
        userInfo : null,
        globalSettings : null 
    },
+   onLoad : function(){
+      wx.setNavigationBarTitle({
+         title: '设置-邻答'
+      });
+   },
    onShow : function(){
         var that = this;
         app.login(function(){

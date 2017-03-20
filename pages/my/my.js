@@ -49,6 +49,11 @@ Page({
             console.log(err);
        }); 
     },
+    onLoad : function(){
+       wx.setNavigationBarTitle({
+          title: '我的话题-邻答'
+       }); 
+    },
     onShow : function(){
         var that = this;
         app.login(function(){
@@ -66,10 +71,30 @@ Page({
     },
     loadData : function(that){
        switch(that.data.index){
-          case "0" : that.loadMyTopic(that); break;
-          case "1" : that.loadMyReplies(that); break;
-          case "2" : that.loadAtMe(that); break;
-          default : that.loadMyTopic(that); break;   
+          case "0" : 
+             that.loadMyTopic(that);
+             wx.setNavigationBarTitle({
+                title: '我的话题-邻答'
+             }); 
+             break;
+          case "1" : 
+             that.loadMyReplies(that);
+             wx.setNavigationBarTitle({
+                title: '参与的话题-邻答'
+             }); 
+             break;
+          case "2" : 
+             that.loadAtMe(that);
+             wx.setNavigationBarTitle({
+                title: '@我的话题-邻答'
+             }); 
+             break;
+          default : 
+             that.loadMyTopic(that);
+             wx.setNavigationBarTitle({
+                title: '我的话题-邻答'
+             }); 
+             break;   
        }  
     },
     changeTab : function(e){
