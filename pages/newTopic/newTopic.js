@@ -134,7 +134,7 @@ Page({
       var subfix = that.get_suffix(path);
       return number + subfix;
   },
-  doUpload : function(i,aliupload,imageUrls,yyyyMMdd,that){
+  doUpload : function(i,aliupload,imageUrls,that){
      wx.showToast({
          title: '图片上传中',
          icon: 'loading',
@@ -163,7 +163,7 @@ Page({
             complete : function(){
                wx.hideToast();
                if(i < photoes.length - 1){
-                  that.doUpload(++i,aliupload,imageUrls,yyyyMMdd,that); 
+                  that.doUpload(++i,aliupload,imageUrls,that); 
                }
                else{
                   wx.navigateBack({delta: 1});
@@ -174,8 +174,7 @@ Page({
   uploadImages : function(imageUrls,that){
      var aliupload = wx.getStorageSync('aliupload');
      if(aliupload && aliupload.expire && aliupload.expire > new Date().getTime()){
-       var yyyyMMdd = utils.formatTimeyyyyMMdd(new Date());
-       that.doUpload(0,aliupload,imageUrls,yyyyMMdd,that);
+       that.doUpload(0,aliupload,imageUrls,that);
      }
   } 
 })
