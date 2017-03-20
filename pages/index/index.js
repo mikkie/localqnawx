@@ -77,6 +77,7 @@ Page({
            });
   },
   loadHomePageCommunities : function(that){
+     that.setData({currentLoc : ''});
      wx.getLocation({
           type : 'wgs84',
           success : function(res){
@@ -99,7 +100,6 @@ Page({
   },
   onLoad : function () {
       var that = this;
-      that.setData({currentLoc : ''});
       app.login(function(){
            that.loadHomePageCommunities(that);  
       });
