@@ -19,7 +19,7 @@ Page({
     onShareAppMessage: function () {
       var that = this; 
       return {
-        title: that.data.topic.content + '-邻答',
+        title: (that.data.topic.content ? that.data.topic.content : '来自' + that.data.topic.community.name + '的图片话题') + '-邻答',
         path: '/pages/topic/topic?topicId=' + that.data.topicId
       };
     },

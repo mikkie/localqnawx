@@ -26,7 +26,7 @@ Page({
   },
   submitTopic : function(e){
      var that = this;
-     if(utils.stringUtil.isEmptyOrNull(this.data.communityId) || utils.stringUtil.isEmptyOrNull(this.data.currentLoc) || utils.stringUtil.isEmptyOrNull(this.data.content)){
+     if(utils.stringUtil.isEmptyOrNull(this.data.communityId) || utils.stringUtil.isEmptyOrNull(this.data.currentLoc)){
          return;
      }
      var imageUrls = [];
@@ -36,6 +36,9 @@ Page({
            var key = [yyyyMMdd,that.generateRandomFileName(that.data.photoes[i],that)].join('/');
            imageUrls.push(key); 
         }
+     }
+     if(utils.stringUtil.isEmptyOrNull(this.data.content) && imageUrls.length == 0){
+         return;
      }
      app.getUserInfo(function(userInfo){
         if(userInfo){
