@@ -7,6 +7,11 @@ Page({
        communityId : '',
        topics : []
     },
+    backHome : function(){
+      wx.switchTab({
+        url: 'pages/index/index'
+      });
+    },
     onShareAppMessage: function () {
       var that = this;  
       return {
