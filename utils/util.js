@@ -27,6 +27,9 @@ function formatNumber(n) {
 }
 
 var stringUtil = {
+   trim : function(str){
+      return str.replace(/(^\s*)|(\s*$)/g, "");  
+   }, 
    isEmptyOrNull : function(str){
       if(!str){
          return true;
