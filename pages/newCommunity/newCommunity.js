@@ -39,7 +39,7 @@ Page({
           utils.serviceUtil.post(conf.service.createCommunity,{
               location : this.data.pos,
               sessionId : app.globalData.sessionId,
-              name : this.data.communityName
+              name : utils.stringUtil.trim(this.data.communityName)
            },function(res){
               if(res.data["401"]){
                  wx.showModal({
@@ -47,6 +47,13 @@ Page({
                    content: res.data["401"],
                    showCancel : false       
                  });
+              }
+              else if(res.data.warn){
+                wx.showModal({
+                   title: '警告',
+                   content: res.data.warn,
+                   showCancel : false       
+                });
               }
               else{
                 wx.redirectTo({url: '../topicList/topicList?communityId=' + res.data.success._id + '&curLocl=' + res.data.success.name});

@@ -170,6 +170,9 @@ Page({
     },
     atUser : function(e){
        var atUsername = e.target.dataset.username;
+       if(atUsername == '@匿名用户'){
+          return;
+       }
        if(new RegExp(atUsername).test(this.data.content)){
           return; 
        }

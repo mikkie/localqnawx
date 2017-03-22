@@ -9,7 +9,7 @@ Page({
     },
     backHome : function(){
       wx.switchTab({
-        url: 'pages/index/index'
+        url: '/pages/index/index'
       });
     },
     onShareAppMessage: function () {
