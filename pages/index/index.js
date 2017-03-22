@@ -6,7 +6,8 @@ var app = getApp();
 Page({
   data: {
     currentLoc : '',
-    communities : []
+    communities : [],
+    contentHeight : '400px'
   },
   onShareAppMessage: function () {
     return {
@@ -99,6 +100,8 @@ Page({
       wx.stopPullDownRefresh(); 
   },
   onLoad : function () {
+      var res = wx.getSystemInfoSync();
+      this.setData({contentHeight:(res.windowHeight - 120) + 'px'});
       var that = this;
       app.login(function(){
            that.loadHomePageCommunities(that);  

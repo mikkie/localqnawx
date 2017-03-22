@@ -6,16 +6,6 @@
     background-color: #F2F2F2;
 }
 
-.footer{
-    border-top: 1px solid lightgray;
-    background-color: #F2F2F2;
-    position: fixed;
-    padding: 5px;
-    bottom: 0;
-    left : 0;
-    right : 0;
-}
-
 .fcontainer{
   display: flex;
   flex-direction: row;

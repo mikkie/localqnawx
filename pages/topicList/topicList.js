@@ -36,6 +36,8 @@ Page({
       wx.stopPullDownRefresh(); 
     },
     onLoad : function(options){
+        var res = wx.getSystemInfoSync();
+        this.setData({contentHeight:(res.windowHeight - 120) + 'px'});
         this.setData({currentLoc : options.curLocl,communityId : options.communityId});
         wx.setNavigationBarTitle({
           title: this.data.currentLoc + '-邻答'

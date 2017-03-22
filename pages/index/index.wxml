@@ -1,11 +1,12 @@
 <!--index.wxml-->
 <view class="container">
-  <view class="header">
+  <view class="header" style="height:50px;">
     <image class="icon" src="../../images/magnifier.png"></image>
     <input type="text" placeholder="输入社区名称进行搜索" class="currentLocation" value="{{currentLoc}}" bindconfirm="bindSearchCommunity"/>
     <image class="icon" src="../../images/map.png" bindtap="openMap"></image>
   </view>
   <view class="content">
+    <scroll-view scroll-y="true" style="height:{{contentHeight}};padding-left:0px;padding-right:5px;">
     <view wx:for="{{communities}}" wx:key="_id" wx:for-item="community">
       <view class="community">
        <view class="chead">
@@ -17,8 +18,11 @@
        </view>
      </view>
     </view>
-     <view class="newCommunity">
-       <navigator url="../newCommunity/newCommunity" hover-class="none"><button type="primary">新建社区</button></navigator>
-     </view>
+    </scroll-view>
+  </view>
+  <view class="footer" style="height:50px;border-top:0;background-color:#fff;">
+      <view class="newCommunity">
+        <navigator url="../newCommunity/newCommunity" hover-class="none"><button type="primary">新建社区</button></navigator>
+      </view>
   </view>
 </view>

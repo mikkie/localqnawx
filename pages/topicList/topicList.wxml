@@ -1,10 +1,11 @@
 <!--topicList.wxml-->
 <view class="container">
-  <view class="header" style="background-color:#F2F2F2;" bindtap="backHome">
+  <view class="header" style="background-color:#F2F2F2;height:50px;" bindtap="backHome">
     <image class="icon" src="../../images/map.png"></image>
     <text class="currentLocation">{{currentLoc}}</text>
   </view>
   <view class="content">
+    <scroll-view scroll-y="true" style="height:{{contentHeight}};padding-left:0px;padding-right:5px;"> 
     <view wx:for="{{topics}}" wx:key="_id" wx:for-item="topic">
     <view class="community">
       <view class="chead" style="justify-content:flex-start;">
@@ -34,10 +35,13 @@
         <text style="font-size:11pt;">该社区暂无话题</text>
       </view>
     </view>
-    <view class="newTopic">
+    </scroll-view>
+  </view>
+  <view class="footer" style="height:50px;border-top:0;background-color:#fff;">
+      <view class="newTopic">
     <navigator url="../newTopic/newTopic?communityId={{communityId}}&curLocl={{currentLoc}}" hover-class="none">
       <button type="primary">新建话题</button>
     </navigator>
-    </view>  
+    </view>
   </view>
 </view>
