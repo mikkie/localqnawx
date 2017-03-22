@@ -7,7 +7,8 @@ Page({
       content : '',
       topic : null,
       comments : [],
-      anonymous : false
+      anonymous : false,
+      contentHeight : '400px'
     },
     previewPic : function(e){
        var that = this;
@@ -31,6 +32,8 @@ Page({
       };
     },
     onLoad : function(options){
+        var res = wx.getSystemInfoSync();
+        this.setData({contentHeight:(res.windowHeight - 120) + 'px'});
         this.setData({topicId : options.topicId});
     },
     onShow : function(){

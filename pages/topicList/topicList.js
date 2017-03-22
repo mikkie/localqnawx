@@ -5,7 +5,8 @@ Page({
     data : {
        currentLoc : "请选择位置",
        communityId : '',
-       topics : []
+       topics : [],
+       contentHeight : '400px'
     },
     backHome : function(){
       wx.switchTab({

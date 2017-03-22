@@ -1,5 +1,6 @@
 <!--topic.wxml-->
 <view class="container">
+  <scroll-view scroll-y="true" style="height:{{contentHeight}};padding-left:0px;padding-right:5px;">
   <view class="header">
    <view class="community" style="border-bottom:none;padding:0;">
     <view class="chead" style="justify-content:flex-start;">
@@ -21,7 +22,6 @@
     </view>  
   </view>
   <view class="content">
-    <scroll-view scroll-y="true" style="height:350px;padding-left:0px;padding-right:5px;">
     <view wx:for="{{comments}}" wx:key="_id" wx:for-item="comment">
     <view class="community">
       <view class="chead" style="justify-content:flex-start;">
@@ -57,8 +57,8 @@
       </view>
     </view>
     </view>
-     </scroll-view>
   </view>  
+  </scroll-view>
   <view class="footer">
     <form bindsubmit="submitComment">
      <view class="fcontainer">
