@@ -33,7 +33,7 @@ Page({
     },
     onLoad : function(options){
         var res = wx.getSystemInfoSync();
-        this.setData({contentHeight:(res.windowHeight - 60) + 'px'});
+        this.setData({contentHeight:(res.windowHeight - 70) + 'px'});
         this.setData({topicId : options.topicId});
     },
     onShow : function(){
