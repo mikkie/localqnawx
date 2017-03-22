@@ -33,11 +33,11 @@
       <view class="chead" style="justify-content:flex-start;">
         <text style="font-size:11pt;">该社区暂无话题</text>
       </view>
-    </view>  
-  </view>
-  <view class="footer">
+    </view>
+    <view class="newTopic">
     <navigator url="../newTopic/newTopic?communityId={{communityId}}&curLocl={{currentLoc}}" hover-class="none">
-      <image class="addIcon" src="../../images/add.png"></image>
+      <button type="primary">新建话题</button>
     </navigator>
+    </view>  
   </view>
 </view>

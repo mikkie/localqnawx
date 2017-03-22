@@ -92,7 +92,8 @@ App({
   showLoading:function(){
         wx.showToast({
          title: '加载中',
-         icon: 'loading'
+         icon: 'loading',
+         duration: 10000
         });
    },
    cancelLoading:function(){
