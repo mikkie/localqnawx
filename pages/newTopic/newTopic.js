@@ -67,6 +67,7 @@ Page({
               else{
                  //uploadImages
                  if(res.data.success && that.data.photoes.length > 0){
+                    wx.showNavigationBarLoading();
                     that.uploadImages(imageUrls,that);
                  }
                  else{
@@ -211,6 +212,7 @@ Page({
                            showCancel : false,
                            success: function(res) {
                              if (res.confirm) {
+                                wx.hideNavigationBarLoading();
                                 wx.navigateBack({delta: 1});
                              }
                             }
@@ -218,6 +220,7 @@ Page({
                      }
                   }
                   else{
+                     wx.hideNavigationBarLoading(); 
                      wx.navigateBack({delta: 1});
                   }
                }
