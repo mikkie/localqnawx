@@ -11,7 +11,10 @@ Page({
     expireLengths : ['5','1','4','24','7'],
     expireDateUnits : ['m','h','h','h','d'],
     anonymous : false,
-    photoes : []
+    photoes : [],
+    failedUpload : [],
+    failedTry : 0,
+    submitDisabled : false
   },
   confirmContent : function(e){
      this.data.content = e.detail.value;
@@ -42,6 +45,7 @@ Page({
      }
      app.getUserInfo(function(userInfo){
         if(userInfo){
+          that.setData({submitDisabled : true,failedUpload : [],failedTry : 0});
           utils.serviceUtil.post(conf.service.createNewTopic,{
               userInfo : userInfo,
               content : that.data.content,
@@ -136,7 +140,7 @@ Page({
   },
   doUpload : function(i,aliupload,imageUrls,that){
      wx.showToast({
-         title: '图片上传中',
+         title: '图片拼命上传中...',
          icon: 'loading',
          mask : true,
          duration: 10000
@@ -155,10 +159,39 @@ Page({
               'signature': aliupload.signature,
             },
             success: function(res){
-               console.log('success:' + key);
+               console.log('upload image success:' + key);
+               if(that.data.failedUpload.length > 0){
+                  for(var j in that.data.failedUpload){
+                     if(that.data.failedUpload[j] == imageUrls[i]){
+                        that.data.failedUpload.splice(j,1);
+                        break;  
+                     } 
+                  }
+               }  
             },
             fail : function(err){
-               console.log('failed:' + err + key);
+               console.log('upload image failed:' + key);
+               if(that.data.failedUpload.length == 0){
+                  that.data.failedUpload.push(imageUrls[i]);
+               }
+               else{
+                  var find = false;  
+                  for(var j in that.data.failedUpload){
+                     if(that.data.failedUpload[j] == imageUrls[i]){
+                        find = true;
+                        break;  
+                     } 
+                  }
+                  if(!find){
+                     that.data.failedUpload.push(imageUrls[i]);
+                  }
+               }
+               wx.showToast({
+                 title: '网络不稳定，图片重新上传中....',
+                 icon: 'loading',
+                 mask : false,
+                 duration: 3000
+               });
             },
             complete : function(){
                wx.hideToast();
@@ -166,7 +199,27 @@ Page({
                   that.doUpload(++i,aliupload,imageUrls,that); 
                }
                else{
-                  wx.navigateBack({delta: 1});
+                  if(that.data.failedUpload.length > 0){
+                     if(that.data.failedTry < 3){
+                        that.setData({failedTry : ++that.data.failedTry});
+                        that.uploadImages(that.data.failedUpload.slice(0),that);  
+                     }
+                     else{
+                        wx.showModal({
+                           title: '错误',
+                           content: '图片上传失败',
+                           showCancel : false,
+                           success: function(res) {
+                             if (res.confirm) {
+                                wx.navigateBack({delta: 1});
+                             }
+                            }
+                        }); 
+                     }
+                  }
+                  else{
+                     wx.navigateBack({delta: 1});
+                  }
                }
             }
           }); 

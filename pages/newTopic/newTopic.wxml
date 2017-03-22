@@ -30,7 +30,7 @@
           <switch bindchange="toggleAnonymous"/>
         </view>
         <view class="section">
-           <button type="primary" formType="submit">提交</button>
+           <button type="primary" formType="submit" disabled="{{submitDisabled}}">提交</button>
         </view>
       </view>
     </form>
