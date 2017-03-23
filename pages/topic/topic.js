@@ -100,11 +100,18 @@ Page({
     toggleAnonymous : function(e){
        this.setData({anonymous: e.detail.value.length == 1});
     },
+    clearComment : function(that){
+       var doClear = function(){
+           that.setData({content : ''});
+       };
+       //bug
+       setTimeout(doClear,300);
+    },
     submitComment : function(e){
         var content = e.detail.value.content;
         var that = this;
         if(utils.stringUtil.isEmptyOrNull(content)){
-           that.setData({content : ''}); 
+           that.clearComment(that); 
            return;
         }
         app.getUserInfo(function(userInfo){
@@ -117,7 +124,7 @@ Page({
               anonymous : that.data.anonymous,
               to : []
            },function(res){
-              that.setData({content : ''}); 
+              that.clearComment(that); 
               if(res.data["401"]){
                  wx.showModal({
                    title: '无权限',
@@ -129,7 +136,7 @@ Page({
                  that.loadComment();   
               }
            },function(err){
-               that.setData({content : ''}); 
+               that.clearComment(that); 
                console.log(err);
            });
           }
