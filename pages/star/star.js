@@ -73,7 +73,7 @@ Page({
     },
     onLoad : function(){
       var res = wx.getSystemInfoSync();
-      this.setData({contentHeight:(res.windowHeight - 50) + 'px'});
+      this.setData({contentHeight:res.windowHeight + 'px'});
     },
     onShow : function(){
         var that = this;

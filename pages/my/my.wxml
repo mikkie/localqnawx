@@ -7,7 +7,7 @@
   </view>
   <!-- my topics -->
   <view class="content" hidden="{{index == 1 || index == 2}}">
-    <scroll-view scroll-y="true" style="height:{{contentHeight}};padding-left:0px;padding-right:5px;">
+    <scroll-view bindscrolltoupper="onPullDownRefresh" scroll-y="true" style="height:{{contentHeight}};padding-left:0px;padding-right:5px;">
     <view wx:for="{{myTopics}}" wx:key="_id" wx:for-item="topic">
     <view class="community">
       <view class="chead" style="justify-content:flex-start;">
@@ -40,7 +40,7 @@
   </view>
   <!-- join topics -->
   <view class="content" hidden="{{index == 0 || index == 2}}">
-    <scroll-view scroll-y="true" style="height:{{contentHeight}};padding-left:0px;padding-right:5px;">
+    <scroll-view bindscrolltoupper="onPullDownRefresh" scroll-y="true" style="height:{{contentHeight}};padding-left:0px;padding-right:5px;">
     <view wx:for="{{joinTopics}}" wx:key="_id" wx:for-item="topic">
     <view class="community">
       <view class="chead" style="justify-content:flex-start;">
@@ -72,7 +72,7 @@
   </view>
   <!-- @me topics -->
   <view class="content" hidden="{{index == 0 || index == 1}}">
-    <scroll-view scroll-y="true" style="height:{{contentHeight}};padding-left:0px;padding-right:5px;">
+    <scroll-view bindscrolltoupper="onPullDownRefresh" scroll-y="true" style="height:{{contentHeight}};padding-left:0px;padding-right:5px;">
     <view wx:for="{{atMeTopics}}" wx:key="_id" wx:for-item="topic">
     <view class="community">
       <view class="chead" style="justify-content:flex-start;">

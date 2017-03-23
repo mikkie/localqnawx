@@ -55,7 +55,7 @@ Page({
           title: '我的话题-邻答'
        }); 
        var res = wx.getSystemInfoSync();
-       this.setData({contentHeight:(res.windowHeight - 50) + 'px'});
+       this.setData({contentHeight:res.windowHeight + 'px'});
     },
     onShow : function(){
         var that = this;
