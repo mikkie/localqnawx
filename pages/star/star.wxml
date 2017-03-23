@@ -1,10 +1,11 @@
 <!--star.wxml-->
 <view class="container">
-  <view class="header">
+  <view class="header" style="height:40px;">
     <text class="{{tab0}}" data-index="0" bindtap="changeTab">关注社区</text>
     <text class="{{tab1}}" data-index="1" bindtap="changeTab">关注话题</text>
   </view>
   <view class="content">
+    <scroll-view scroll-y="true" style="height:{{contentHeight}};padding-left:0px;padding-right:5px;"> 
     <view wx:for="{{communities}}" wx:key="_id" wx:for-item="community">
     <view class="community">
        <view class="chead">
@@ -47,5 +48,6 @@
         <text style="font-size:11pt;">暂无关注话题</text>
       </view>
     </view>
+    </scroll-view>
   </view>  
 </view>

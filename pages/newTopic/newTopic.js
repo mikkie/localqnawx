@@ -14,7 +14,8 @@ Page({
     photoes : [],
     failedUpload : [],
     failedTry : 0,
-    submitDisabled : false
+    submitDisabled : false,
+    textAreaWidth : '300px'
   },
   confirmContent : function(e){
      this.data.content = e.detail.value;
@@ -95,6 +96,8 @@ Page({
        wx.setNavigationBarTitle({
          title: '新建话题-邻答'
        });
+       var res = wx.getSystemInfoSync();
+       this.setData({textAreaWidth : (res.windowWidth - 10) + 'px'});
        this.setData({currentLoc : options.curLocl,communityId : options.communityId,photoes : []});
        this.initUpload();
   },

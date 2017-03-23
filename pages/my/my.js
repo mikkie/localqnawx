@@ -10,7 +10,8 @@ Page({
         newComment : false,
         myTopics : [],
         joinTopics : [],
-        atMeTopics : []
+        atMeTopics : [],
+        contentHeight : '400px'
     },
     loadMyTopic : function(that){
        util.serviceUtil.get(conf.service.findTopicsByOwner,{
@@ -53,6 +54,8 @@ Page({
        wx.setNavigationBarTitle({
           title: '我的话题-邻答'
        }); 
+       var res = wx.getSystemInfoSync();
+       this.setData({contentHeight:(res.windowHeight - 50) + 'px'});
     },
     onShow : function(){
         var that = this;
