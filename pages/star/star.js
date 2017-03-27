@@ -7,7 +7,8 @@ Page({
         tab1 : "tab lowlight",
         communities : [],
         index : "0",
-        topics : []
+        topics : [],
+        contentHeight : '400px'
     },
     loadStarCommunities : function(that){
        wx.setNavigationBarTitle({
@@ -69,6 +70,10 @@ Page({
           case "1" : that.loadStarTopics(that); break;
           default :  break;   
        }
+    },
+    onLoad : function(){
+      var res = wx.getSystemInfoSync();
+      this.setData({contentHeight:res.windowHeight + 'px'});
     },
     onShow : function(){
         var that = this;
