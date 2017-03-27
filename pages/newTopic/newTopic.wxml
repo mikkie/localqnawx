@@ -7,7 +7,7 @@
   <view class="content">
     <form bindsubmit="submitTopic">
       <view>
-         <textarea name="topicContent" class="topicContent" placeholder="输入你的话题内容，150字以内。" maxlength="150" placeholder-style="font-size:11pt;"  bindblur="confirmContent" auto-focus="true"/>
+         <textarea name="topicContent" class="topicContent" placeholder="输入你的话题内容，500字以内。" maxlength="500" placeholder-style="font-size:11pt;"  bindblur="confirmContent" auto-focus="true"/>
         <view class="section">
           <block wx:for="{{photoes}}" wx:for-item="photo" wx:key="index">
              <view class="photoView">
