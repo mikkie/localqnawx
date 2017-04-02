@@ -218,7 +218,8 @@ Page({
                   var index = e.target.dataset.index;
                   utils.serviceUtil.post(conf.service.deleteComment,{
                      sessionId : app.globalData.sessionId,
-                     commentId : commentid
+                     commentId : commentid,
+                     topicId : that.data.topicId
                   },function(res){
                      that.data.comments.splice(index,1);
                      that.setData({comments : that.data.comments});
