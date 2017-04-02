@@ -27,7 +27,11 @@
                   <image class="photo" src="{{photo}}" data-src="{{photo}}" data-index="{{index}}" bindtap="previewPic"></image>
                 </view>
               </block>
-          </view>
+      </view>
+      <view class="section">
+             <image class="icon small" src="../../images/comments.png" bindtap="upAndDownComment" data-isup="true" data-index="{{index}}" data-commentid="{{comment._id}}"></image>
+             <text class="mini-font">{{topic.comments.length}}</text>
+      </view>
       </navigator>
     </view>
     </view>
@@ -59,7 +63,11 @@
                   <image class="photo" src="{{photo}}" data-src="{{photo}}" data-index="{{index}}" bindtap="previewPic"></image>
                 </view>
               </block>
-          </view>
+      </view>
+      <view class="section">
+             <image class="icon small" src="../../images/comments.png" bindtap="upAndDownComment" data-isup="true" data-index="{{index}}" data-commentid="{{comment._id}}"></image>
+             <text class="mini-font">{{topic.comments.length}}</text>
+          </view>    
       </navigator>
     </view>
     </view>
@@ -91,7 +99,11 @@
                   <image class="photo" src="{{photo}}" data-src="{{photo}}" data-index="{{index}}" bindtap="previewPic"></image>
                 </view>
               </block>
-          </view>
+      </view>
+      <view class="section">
+             <image class="icon small" src="../../images/comments.png" bindtap="upAndDownComment" data-isup="true" data-index="{{index}}" data-commentid="{{comment._id}}"></image>
+             <text class="mini-font">{{topic.comments.length}}</text>
+      </view>
       </navigator>
     </view>
     </view>

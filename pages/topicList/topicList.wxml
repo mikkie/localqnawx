@@ -27,6 +27,10 @@
                 </view>
               </block>
           </view>
+          <view class="section">
+             <image class="icon small" src="../../images/comments.png" bindtap="upAndDownComment" data-isup="true" data-index="{{index}}" data-commentid="{{comment._id}}"></image>
+             <text class="mini-font">{{topic.comments.length}}</text>
+          </view>
         </navigator>
     </view>
     </view>
