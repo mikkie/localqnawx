@@ -25,13 +25,13 @@ Page({
       };
     },
     loadTopicsByCommunityId : function(that){
-        utils.serviceUtil.get(conf.service.findTopicsByCommunityId,{communityId : this.data.communityId,sessionId : app.globalData.sessionId},function(res){
-    if(res.data && res.data.success){
-       that.setData({topics : res.data.success});
-    }
-    else{
-       console.log(res.data.error);  
-    }
+        utils.serviceUtil.get(conf.service.findTopicsByCommunityId,{communityId : that.data.communityId,sessionId : app.globalData.sessionId},function(res){
+           if(res.data && res.data.success){
+             that.setData({topics : res.data.success});
+           }
+           else{
+             console.log(res.data.error);  
+           }
         },function(err){
             console.log(err); 
         });
@@ -41,16 +41,24 @@ Page({
       wx.stopPullDownRefresh(); 
     },
     onLoad : function(options){
-        var that = this;
+        var res = wx.getSystemInfoSync();
+        this.setData({contentHeight:(res.windowHeight - 120) + 'px'});
+        this.setData({currentLoc : options.curLocl,communityId : options.communityId});
+        if(options.public == 'r'){
+          this.data.permission.public = options.public;
+          this.setData({permission : this.data.permission});
+        }
+        wx.setNavigationBarTitle({
+              title: this.data.currentLoc + '-邻答'
+        });
+    },
+    onShow : function(){
+        var that = this; 
         app.login(function(){
-           var res = wx.getSystemInfoSync();
-           that.setData({contentHeight:(res.windowHeight - 120) + 'px'});
-           that.setData({currentLoc : options.curLocl,communityId : options.communityId});
-           if(options.public == 'r'){
-              that.data.permission.public = options.public;
-              that.setData({permission : that.data.permission});
+           that.loadTopicsByCommunityId(that);
+           if(that.data.permission.public == 'r'){
               utils.serviceUtil.post(conf.service.isCommunityOwnByUser,{
-                communityId : options.communityId,
+                communityId : that.data.communityId,
                 sessionId : app.globalData.sessionId
               },function(res){
                  if(res.data.success){
@@ -61,13 +69,7 @@ Page({
                  console.log(err);
               });
            }
-           wx.setNavigationBarTitle({
-              title: that.data.currentLoc + '-邻答'
-           });
         });
-    },
-    onShow : function(){
-        this.loadTopicsByCommunityId(this);
     },
     handleStar : function(e){
      var index = e.currentTarget.dataset.index;
