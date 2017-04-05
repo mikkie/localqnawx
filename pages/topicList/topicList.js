@@ -45,14 +45,16 @@ Page({
         this.setData({contentHeight:(res.windowHeight - 120) + 'px'});
         this.setData({currentLoc : options.curLocl,communityId : options.communityId});
         if(options.public == 'r'){
-           this.setData({permission.public : options.public});
+           this.data.permission.public = options.public;
+           this.setData({permission : this.data.permission});
            var that = this;
            utils.serviceUtil.post(conf.service.isCommunityOwnByUser,{
               communityId : options.communityId,
               sessionId : app.globalData.sessionId
            },function(res){
-               if(res.success){
-                  that.setData({permission.owner : true});
+               if(res.data.success){
+                  that.data.permission.owner = true;
+                  that.setData({permission : that.data.permission});
                }
            },function(err){
                console.log(err);
