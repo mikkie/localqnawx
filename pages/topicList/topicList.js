@@ -67,10 +67,7 @@ Page({
         });
     },
     onShow : function(){
-        var that = this; 
-        app.login(function(){
-           that.loadTopicsByCommunityId(that);
-        });
+        this.loadTopicsByCommunityId(this);
     },
     handleStar : function(e){
      var index = e.currentTarget.dataset.index;
