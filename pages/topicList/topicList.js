@@ -41,27 +41,29 @@ Page({
       wx.stopPullDownRefresh(); 
     },
     onLoad : function(options){
-        var res = wx.getSystemInfoSync();
-        this.setData({contentHeight:(res.windowHeight - 120) + 'px'});
-        this.setData({currentLoc : options.curLocl,communityId : options.communityId});
-        if(options.public == 'r'){
-           this.data.permission.public = options.public;
-           this.setData({permission : this.data.permission});
-           var that = this;
-           utils.serviceUtil.post(conf.service.isCommunityOwnByUser,{
-              communityId : options.communityId,
-              sessionId : app.globalData.sessionId
-           },function(res){
-               if(res.data.success){
-                  that.data.permission.owner = true;
-                  that.setData({permission : that.data.permission});
-               }
-           },function(err){
-               console.log(err);
+        var that = this;
+        app.login(function(){
+           var res = wx.getSystemInfoSync();
+           that.setData({contentHeight:(res.windowHeight - 120) + 'px'});
+           that.setData({currentLoc : options.curLocl,communityId : options.communityId});
+           if(options.public == 'r'){
+              that.data.permission.public = options.public;
+              that.setData({permission : that.data.permission});
+              utils.serviceUtil.post(conf.service.isCommunityOwnByUser,{
+                communityId : options.communityId,
+                sessionId : app.globalData.sessionId
+              },function(res){
+                 if(res.data.success){
+                   that.data.permission.owner = true;
+                   that.setData({permission : that.data.permission});
+                 }
+              },function(err){
+                 console.log(err);
+              });
+           }
+           wx.setNavigationBarTitle({
+              title: that.data.currentLoc + '-邻答'
            });
-        }
-        wx.setNavigationBarTitle({
-          title: this.data.currentLoc + '-邻答'
         });
     },
     onShow : function(){
