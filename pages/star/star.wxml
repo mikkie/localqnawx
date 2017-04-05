@@ -10,7 +10,7 @@
     <view class="community">
        <view class="chead">
          <view class="avatar" style="background-color:#{{community.avatar.color}}"><text class="avatarC">{{community.avatar.character}}</text></view>
-         <navigator class="cname" url="../topicList/topicList?communityId={{community._id}}&curLocl={{community.name}}" hover-class="none"><text>{{community.name}}</text></navigator>
+         <navigator class="cname" url="../topicList/topicList?communityId={{community._id}}&curLocl={{community.name}}&public={{community.permission.public}}" hover-class="none"><text>{{community.name}}</text></navigator>
          <image class="icon" src="../../images/star-yellow.png" bindtap="handleCommunityStar" data-communityId="{{community._id}}" data-index="{{index}}"></image>
        </view>
      </view>

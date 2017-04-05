@@ -6,7 +6,11 @@ Page({
        currentLoc : "请选择位置",
        communityId : '',
        topics : [],
-       contentHeight : '400px'
+       contentHeight : '400px',
+       permission : {
+          "public" : 'rw',
+          "owner" : false
+       }
     },
     backHome : function(){
       wx.switchTab({
@@ -17,7 +21,7 @@ Page({
       var that = this;  
       return {
         title: that.data.currentLoc + '-邻答',
-        path: '/pages/topicList/topicList?communityId='+ that.data.communityId +'&curLocl=' + that.data.currentLoc
+        path: '/pages/topicList/topicList?communityId='+ that.data.communityId +'&curLocl=' + that.data.currentLoc + '&public=' +  that.data.permission.public
       };
     },
     loadTopicsByCommunityId : function(that){
@@ -40,6 +44,20 @@ Page({
         var res = wx.getSystemInfoSync();
         this.setData({contentHeight:(res.windowHeight - 120) + 'px'});
         this.setData({currentLoc : options.curLocl,communityId : options.communityId});
+        if(options.public == 'r'){
+           this.setData({permission.public : options.public});
+           var that = this;
+           utils.serviceUtil.post(conf.service.isCommunityOwnByUser,{
+              communityId : options.communityId,
+              sessionId : app.globalData.sessionId
+           },function(res){
+               if(res.success){
+                  that.setData({permission.owner : true});
+               }
+           },function(err){
+               console.log(err);
+           });
+        }
         wx.setNavigationBarTitle({
           title: this.data.currentLoc + '-邻答'
         });

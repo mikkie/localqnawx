@@ -8,6 +8,10 @@
      <form>
        <view class="row">
          <input class="communityName" type="text" placeholder="社区名称,如(小区，公司，商圈等)，默认为所选地址。" bindinput="bindNameInput" value="{{communityName}}"/>
+       </view>
+       <view class="row">
+          <label>仅自己可以创建话题:</label>
+          <switch bindchange="privateCommunity"/>
        </view>       
      </form>
      <button type="primary" class="okBtn" bindtap="submitNewCommunity">提交</button>

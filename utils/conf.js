@@ -26,7 +26,8 @@ var conf = {
       deleteTopic : '/topic/deleteTopic',
       deleteComment : '/comment/deleteComment',
       tagTopicReaded : '/topic/tagTopicReaded',
-      getUploadSignature : '/fileUpload/getUploadSignature'
+      getUploadSignature : '/fileUpload/getUploadSignature',
+      isCommunityOwnByUser : '/community/isCommunityOwnByUser'
    }
 };
 

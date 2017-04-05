@@ -41,7 +41,7 @@
     </view>
     </scroll-view>
   </view>
-  <view class="footer" style="height:50px;border-top:0;background-color:#fff;">
+  <view class="footer" style="height:50px;border-top:0;background-color:#fff;" hidden="{{permission.public == 'r' && permission.owner == false}}">
       <view class="newTopic">
     <navigator url="../newTopic/newTopic?communityId={{communityId}}&curLocl={{currentLoc}}" hover-class="none">
       <button type="primary">新建话题</button>
