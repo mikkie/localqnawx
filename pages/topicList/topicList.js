@@ -63,8 +63,10 @@ Page({
               },function(res){
                  if(res.data.success){
                    that.data.permission.owner = true;
-                   that.setData({contentHeight:(wx.getSystemInfoSync().windowHeight - 60) + 'px'});
                    that.setData({permission : that.data.permission});
+                 }
+                 else{
+                   that.setData({contentHeight:(wx.getSystemInfoSync().windowHeight - 60) + 'px'});  
                  }
               },function(err){
                  console.log(err);
