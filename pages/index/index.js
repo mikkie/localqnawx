@@ -102,9 +102,11 @@ Page({
   onLoad : function () {
       var res = wx.getSystemInfoSync();
       this.setData({contentHeight:(res.windowHeight - 120) + 'px'});
-      var that = this;
-      app.login(function(){
-           that.loadHomePageCommunities(that);  
-      });
+  },
+  onShow : function(){
+     var that = this;
+     app.login(function(){
+        that.loadHomePageCommunities(that);  
+     });
   }
 })
