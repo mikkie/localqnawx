@@ -3,13 +3,13 @@ var utils = require('../../utils/util.js');
 var conf = require('../../utils/conf.js');
 Page({
   data:{
-    periodArray : ['5分钟','1小时','4小时','24小时','7天'],
+    periodArray : ['5分钟','1小时','4小时','24小时','7天','无限期'],
     periodIndex : 2,
     currentLoc : '',
     communityId : '',
     content : '',
-    expireLengths : ['5','1','4','24','7'],
-    expireDateUnits : ['m','h','h','h','d'],
+    expireLengths : ['5','1','4','24','7','100'],
+    expireDateUnits : ['m','h','h','h','d','y'],
     anonymous : false,
     photoes : [],
     failedUpload : [],
