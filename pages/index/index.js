@@ -44,11 +44,8 @@ Page({
                console.log(err);
             });
   },
-  bindSearchCommunity : function(e){
-     var that = this;
-     var name = e.detail.value;
-     if(!util.stringUtil.isEmptyOrNull(name)){
-        util.serviceUtil.post(conf.service.findCommunityByName,{
+  doSearchCommunity : function(name,that){
+     util.serviceUtil.post(conf.service.findCommunityByName,{
               name : name,
               sessionId : app.globalData.sessionId
            },function(res){
@@ -56,6 +53,13 @@ Page({
            },function(err){
                console.log(err);
            });
+  },
+  bindSearchCommunity : function(e){
+     var that = this;
+     var name = e.detail.value;
+     if(!util.stringUtil.isEmptyOrNull(name)){
+        that.setData({currentLoc : name});
+        that.doSearchCommunity(name,that);
      }
      else{
         that.loadHomePageCommunities(that);
@@ -106,7 +110,12 @@ Page({
   onShow : function(){
      var that = this;
      app.login(function(){
-        that.loadHomePageCommunities(that);  
+        if(that.data.currentLoc){
+           that.doSearchCommunity(that.data.currentLoc,that); 
+        } 
+        else{
+           that.loadHomePageCommunities(that);    
+        }
      });
   }
 })
