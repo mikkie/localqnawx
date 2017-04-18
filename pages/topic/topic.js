@@ -190,7 +190,7 @@ Page({
        if(new RegExp(atUsername).test(this.data.content)){
           return; 
        }
-       this.setData({content : this.data.content + ' ' + atUsername});
+       this.setData({content : this.data.content + ' ' + atUsername + ' '});
     },
     deleteTopic : function(e){
        wx.showModal({
