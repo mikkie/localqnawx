@@ -6,7 +6,8 @@ Page({
     currentLoc : '选择位置',
     communityName : '',
     pos : [],
-    permission : null
+    permission : null,
+    submitDisabled : false
   },
   onLoad : function(){
      wx.setNavigationBarTitle({
@@ -45,6 +46,8 @@ Page({
          return false;
       }
       else{
+          var that = this;
+          this.setData({submitDisabled : true});
           utils.serviceUtil.post(conf.service.createCommunity,{
               location : this.data.pos,
               sessionId : app.globalData.sessionId,
@@ -68,8 +71,10 @@ Page({
               else{
                 wx.redirectTo({url: '../topicList/topicList?communityId=' + res.data.success._id + '&curLocl=' + res.data.success.name + '&public=' + res.data.success.permission.public});
               }
+              that.setData({submitDisabled : false});
            },function(err){
                console.log(err);
+               that.setData({submitDisabled : false});
            });
          }
       }

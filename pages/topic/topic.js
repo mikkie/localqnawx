@@ -8,7 +8,8 @@ Page({
       topic : null,
       comments : [],
       anonymous : false,
-      contentHeight : '400px'
+      contentHeight : '400px',
+      submitDisabled : false
     },
     previewPic : function(e){
        var that = this;
@@ -114,6 +115,7 @@ Page({
            that.clearComment(that); 
            return;
         }
+        that.setData({submitDisabled : true});
         app.getUserInfo(function(userInfo){
           if(userInfo){
              utils.serviceUtil.post(conf.service.createNewComment,{
@@ -135,9 +137,11 @@ Page({
               else{
                  that.loadComment();   
               }
+              that.setData({submitDisabled : false});
            },function(err){
                that.clearComment(that); 
                console.log(err);
+               that.setData({submitDisabled : false});
            });
           }
         });

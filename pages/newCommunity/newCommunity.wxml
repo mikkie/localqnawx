@@ -14,6 +14,6 @@
           <switch bindchange="privateCommunity"/>
        </view>       
      </form>
-     <button type="primary" class="okBtn" bindtap="submitNewCommunity">提交</button>
+     <button type="primary" class="okBtn" bindtap="submitNewCommunity" disabled="{{submitDisabled}}">提交</button>
   </view>
 </view>
