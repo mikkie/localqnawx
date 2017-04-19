@@ -7,7 +7,7 @@
   <view class="content">
      <form>
        <view class="row" style="margin-top:20px;">
-         <input class="communityName" type="text" placeholder="地点名称,如(宿舍楼，图书馆，操场等)，默认为所选地址。" bindinput="bindNameInput" value="{{communityName}}"/>
+         <input class="communityName" type="text" placeholder="地点别名,如(宿舍楼等方便用户查找)，默认为所选地址。" bindinput="bindNameInput" value="{{communityName}}"/>
        </view>
        <!-- <view class="row" style="margin-top:20px;">
           <label>仅自己可以创建话题:</label>
