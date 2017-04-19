@@ -11,7 +11,7 @@ Page({
   },
   onShareAppMessage: function () {
     return {
-      title: '连接社区，分享智慧-邻答',
+      title: '随时随地连接身边的讯息-邻答',
       path: '/pages/index/index'
     };
   },
