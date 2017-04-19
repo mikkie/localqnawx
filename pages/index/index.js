@@ -100,7 +100,9 @@ Page({
        });
   },
   onPullDownRefresh : function(){
-      this.loadHomePageCommunities(this);
+      if(!this.data.currentLoc){
+          this.loadHomePageCommunities(this);
+      }
       wx.stopPullDownRefresh(); 
   },
   onLoad : function () {
@@ -110,12 +112,9 @@ Page({
   onShow : function(){
      var that = this;
      app.login(function(){
-        if(that.data.currentLoc){
-           that.doSearchCommunity(that.data.currentLoc,that); 
+        if(!that.data.currentLoc){ 
+           that.loadHomePageCommunities(that);
         } 
-        else{
-           that.loadHomePageCommunities(that);    
-        }
      });
   }
 })
