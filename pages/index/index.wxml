@@ -2,7 +2,7 @@
 <view class="container">
   <view class="header" style="height:50px;">
     <image class="icon" src="../../images/magnifier.png"></image>
-    <input type="text" placeholder="输入社区名称进行搜索" class="currentLocation" value="{{currentLoc}}" bindconfirm="bindSearchCommunity"/>
+    <input type="text" placeholder="输入地点名称进行搜索" class="currentLocation" value="{{currentLoc}}" bindconfirm="bindSearchCommunity"/>
     <image class="icon" src="../../images/map.png" bindtap="openMap"></image>
   </view>
   <view class="content">
@@ -22,7 +22,7 @@
   </view>
   <view class="footer" style="height:50px;border-top:0;background-color:#fff;">
       <view class="newCommunity">
-        <navigator url="../newCommunity/newCommunity" hover-class="none"><button type="primary">新建社区</button></navigator>
+        <navigator url="../newCommunity/newCommunity" hover-class="none"><button type="primary">新建地点</button></navigator>
       </view>
   </view>
 </view>

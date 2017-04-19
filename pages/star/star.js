@@ -12,7 +12,7 @@ Page({
     },
     loadStarCommunities : function(that){
        wx.setNavigationBarTitle({
-         title: '关注社区-邻答'
+         title: '关注地点-邻答'
        });
        util.serviceUtil.get(conf.service.findStarCommunitiesByOwner,{
            sessionId : app.globalData.sessionId
