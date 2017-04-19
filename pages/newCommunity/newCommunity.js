@@ -14,14 +14,14 @@ Page({
         title: '新建地点-邻答'
      });
   },
-  privateCommunity : function(e){
+  /*privateCommunity : function(e){
      if(e.detail.value){
          this.setData({permission: {"public" : "r"}}); 
      }
      else{
          this.setData({permission: null});
      }
-  },
+  },*/
   openMap : function(event){
       var that = this;   
       wx.chooseLocation({

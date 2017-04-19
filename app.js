@@ -21,11 +21,11 @@ App({
         }
       },
       fail : function(err){
-         wx.showModal({
-            title: '提示',
-            content: '无法获取用户信息，请确保开启用户信息授权或稍后重试。',
-            showCancel : false
-         }); 
+         // wx.showModal({
+         //    title: '提示',
+         //    content: '无法获取用户信息，请确保开启用户信息授权或稍后重试。',
+         //    showCancel : false
+         // }); 
       }
     });
   },

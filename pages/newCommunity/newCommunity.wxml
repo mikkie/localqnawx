@@ -9,10 +9,10 @@
        <view class="row" style="margin-top:20px;">
          <input class="communityName" type="text" placeholder="地点名称,如(宿舍楼，图书馆，操场等)，默认为所选地址。" bindinput="bindNameInput" value="{{communityName}}"/>
        </view>
-       <view class="row" style="margin-top:20px;">
+       <!-- <view class="row" style="margin-top:20px;">
           <label>仅自己可以创建话题:</label>
           <switch bindchange="privateCommunity"/>
-       </view>       
+       </view> -->       
      </form>
      <button type="primary" class="okBtn" bindtap="submitNewCommunity" disabled="{{submitDisabled}}">提交</button>
   </view>
