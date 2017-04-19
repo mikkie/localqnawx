@@ -1,7 +1,7 @@
 <!--star.wxml-->
 <view class="container">
   <view class="header" style="height:40px;">
-    <text class="{{tab0}}" data-index="0" bindtap="changeTab">关注地点</text>
+    <text class="{{tab0}}" data-index="0" bindtap="changeTab">关注社区</text>
     <text class="{{tab1}}" data-index="1" bindtap="changeTab">关注话题</text>
   </view>
   <view class="content">
@@ -44,7 +44,7 @@
     </view>
     <view class="community" hidden="{{index == '1' || communities.length > 0}}">
       <view class="chead" style="justify-content:flex-start;">
-        <text style="font-size:11pt;">暂无关注地点</text>
+        <text style="font-size:11pt;">暂无关注社区</text>
       </view>
     </view>
     <view class="community" hidden="{{index == '0' || topics.length > 0}}">

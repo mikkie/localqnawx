@@ -11,7 +11,7 @@ Page({
   },
   onLoad : function(){
      wx.setNavigationBarTitle({
-        title: '新建地点-邻答'
+        title: '新建社区-邻答'
      });
   },
   /*privateCommunity : function(e){
