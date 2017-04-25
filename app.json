@@ -12,7 +12,7 @@
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#1F8A70",
-    "navigationBarTitleText": "邻答-随时随地连接身边的讯息",
+    "navigationBarTitleText": "邻答-身边的问答资讯服务",
     "navigationBarTextStyle":"white",
     "enablePullDownRefresh" : true
   },

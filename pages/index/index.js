@@ -42,7 +42,7 @@ Page({
               //that.setData({communities : res.data.success});
            },function(err){
                console.log(err);
-            });
+           });
   },
   doSearchCommunity : function(name,that){
      util.serviceUtil.post(conf.service.findCommunityByName,{
